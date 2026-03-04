@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero to Shipped — Web Apps & Mobile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f1;
+  --surface: #ffffff;
+  --surface2: #f0ede6;
+  --border: #e0dbd0;
+  --royal: #1a3db5;
+  --royal-light: rgba(26,61,181,0.08);
+  --royal-mid: rgba(26,61,181,0.15);
+  --gold: #c9922a;
+  --gold-light: rgba(201,146,42,0.12);
+  --text: #1a1a1a;
+  --text-muted: #6b6660;
+  --text-dim: #a09b94;
+  --green: #1a7a4a;
+  --green-light: rgba(26,122,74,0.1);
+  --red: #c0392b;
+
+  --p1: #1a3db5;
+  --p2: #2d7dd2;
+  --p3: #1a7a4a;
+  --p4: #c9922a;
+  --p5: #7c3aed;
+  --p6: #c0392b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--royal);
+  color: #fff;
+  padding: 80px 24px 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 50%, rgba(255,255,255,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 80% 20%, rgba(201,146,42,0.15) 0%, transparent 60%);
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,146,42,0.4);
+  padding: 5px 16px;
+  border-radius: 2px;
+  margin-bottom: 28px;
+  position: relative;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(52px, 9vw, 112px);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  position: relative;
+  margin-bottom: 10px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-sub {
+  font-size: clamp(15px, 2.5vw, 20px);
+  color: rgba(255,255,255,0.65);
+  max-width: 540px;
+  margin: 20px auto 40px;
+  font-weight: 400;
+  position: relative;
+}
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 4px;
+}
+
+/* ─── PATH SELECTOR ─── */
+.path-bar {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.path-bar::-webkit-scrollbar { display: none; }
+.path-bar-inner {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+.path-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.15s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.path-tab:hover { color: var(--text); }
+.path-tab.active { color: var(--text); border-bottom-color: var(--active-color, var(--royal)); }
+.path-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--dot-color, var(--royal));
+  flex-shrink: 0;
+}
+
+/* ─── MAIN ─── */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ─── PROJECT SECTIONS ─── */
+.project-section {
+  padding: 72px 0 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-header {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+.project-badge {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.project-num {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--p-color, var(--royal));
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-level-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p-color, var(--royal));
+  white-space: nowrap;
+}
+.project-info { flex: 1; }
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.project-desc {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.tool-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: var(--surface2);
+}
+.chip.highlight {
+  background: var(--royal-light);
+  border-color: rgba(26,61,181,0.25);
+  color: var(--royal);
+}
+
+/* ─── WHAT YOU CAN BUILD ─── */
+.build-ideas {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--p-color, var(--royal));
+  border-radius: 4px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+.build-ideas-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p-color, var(--royal));
+  margin-bottom: 12px;
+}
+.idea-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.idea-item {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 6px 10px;
+  background: var(--bg);
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.idea-item::before {
+  content: '→';
+  color: var(--p-color, var(--royal));
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* ─── ACCORDION ─── */
+.accordion {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.accordion-header:hover { background: var(--surface2); }
+.acc-icon { font-size: 16px; flex-shrink: 0; }
+.acc-title {
+  font-size: 14px;
+  font-weight: 700;
+  flex: 1;
+  color: var(--text);
+}
+.acc-chevron {
+  color: var(--text-dim);
+  font-size: 12px;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.accordion.open .acc-chevron { transform: rotate(180deg); }
+.accordion-body {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border);
+}
+.accordion.open .accordion-body { display: block; }
+
+/* ─── STEPS ─── */
+.step-list { margin-top: 16px; }
+.step {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--p-color, var(--royal));
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.step-content { flex: 1; }
+.step-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.step-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ─── CODE BLOCKS ─── */
+.copyable-wrap { position: relative; margin: 12px 0; }
+.code-block {
+  display: block;
+  background: #13131a;
+  border: 1px solid #2a2a3a;
+  border-left: 3px solid var(--p-color, var(--royal));
+  border-radius: 4px;
+  padding: 14px 16px 14px 40px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #e0dfd8;
+  white-space: pre;
+  overflow-x: auto;
+}
+.code-str { color: #7dd3b0; }
+.code-cmd { color: #f4a56a; }
+.code-comment { color: #5a5a7a; }
+.copy-btn {
+  position: absolute;
+  top: 6px; left: 6px;
+  background: #1e1e2e;
+  border: 1px solid #2a2a3a;
+  border-radius: 3px;
+  color: #43d9ad;
+  padding: 2px 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  z-index: 2;
+  font-size: 13px;
+  line-height: 1;
+}
+.copy-btn:hover { border-color: #43d9ad; opacity: 0.8; }
+.copy-btn.copied { border-color: #43d9ad; }
+.copy-btn .copy-emoji { display: block; }
+.copy-btn .copied-check { display: none; font-size: 11px; font-family: 'IBM Plex Mono', monospace; color: #43d9ad; }
+.copy-btn.copied .copy-emoji { display: none; }
+.copy-btn.copied .copied-check { display: block; }
+
+inline-code, code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 6px;
+  color: var(--royal);
+}
+
+/* ─── CALLOUTS ─── */
+.callout {
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.callout-info {
+  background: var(--royal-light);
+  border: 1px solid rgba(26,61,181,0.2);
+  border-left: 3px solid var(--royal);
+  color: var(--text);
+}
+.callout-tip {
+  background: var(--green-light);
+  border: 1px solid rgba(26,122,74,0.2);
+  border-left: 3px solid var(--green);
+  color: var(--text);
+}
+.callout-warn {
+  background: var(--gold-light);
+  border: 1px solid rgba(201,146,42,0.25);
+  border-left: 3px solid var(--gold);
+  color: var(--text);
+}
+.callout strong { font-weight: 700; }
+
+/* ─── SKILL UNLOCK BOX ─── */
+.skill-unlock {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--p-color, var(--royal));
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.skill-unlock-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p-color, var(--royal));
+  margin-bottom: 10px;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.skill-tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.skill-tag::before { content: '✓'; color: var(--p-color, var(--royal)); font-size: 10px; }
+
+/* ─── LESSON STEP LABEL ─── */
+.step-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p-color, var(--royal));
+  margin-bottom: 4px;
+}
+
+ul.plain-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+ul.plain-list li {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 5px 0 5px 18px;
+  position: relative;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  line-height: 1.7;
+}
+ul.plain-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--p-color, var(--royal));
+  font-size: 11px;
+}
+ul.plain-list li:last-child { border-bottom: none; }
+
+/* ─── PROGRESS BAR ─── */
+.progress-bar-wrap { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 200; background: var(--border); }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--royal), var(--gold)); width: 0%; transition: width 0.1s; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--text);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 48px 24px;
+  font-size: 13px;
+}
+footer .footer-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  font-style: italic;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* ─── PROJECT COLOR OVERRIDES ─── */
+.p1 { --p-color: var(--p1); }
+.p2 { --p-color: var(--p2); }
+.p3 { --p-color: var(--p3); }
+.p4 { --p-color: var(--p4); }
+.p5 { --p-color: var(--p5); }
+.p6 { --p-color: var(--p6); }
+
+@media (max-width: 600px) {
+  .project-header { flex-direction: column; gap: 12px; }
+  .hero-stats { gap: 24px; }
+  .idea-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar-wrap"><div class="progress-bar" id="progress"></div></div>
+
+<div style="background:#fff;border-bottom:1px solid #e0dbd0;padding:10px 24px;">
+  <a href="index.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#6b6660;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">← All Tracks</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">🌐 Track 1 of 2 · Web Apps & Mobile</div>
+  <h1>Web Apps<br><em>&amp; Mobile</em></h1>
+  <p class="hero-sub">From a free single-page site to a fully monetized SaaS with a mobile app — six projects, zero experience required.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Experience Required</div></div>
+    <div class="stat"><div class="stat-num">$0</div><div class="stat-label">To Start</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">What You Can Build</div></div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="path-bar">
+  <div class="path-bar-inner">
+    <a class="path-tab" href="#p1" style="--active-color:var(--p1)"><span class="path-dot" style="--dot-color:var(--p1)"></span>01 Starter</a>
+    <a class="path-tab" href="#p2" style="--active-color:var(--p2)"><span class="path-dot" style="--dot-color:var(--p2)"></span>02 Beginner</a>
+    <a class="path-tab" href="#p3" style="--active-color:var(--p3)"><span class="path-dot" style="--dot-color:var(--p3)"></span>03 Intermediate</a>
+    <a class="path-tab" href="#p4" style="--active-color:var(--p4)"><span class="path-dot" style="--dot-color:var(--p4)"></span>04 Advanced</a>
+    <a class="path-tab" href="#p5" style="--active-color:var(--p5)"><span class="path-dot" style="--dot-color:var(--p5)"></span>05 Pro</a>
+    <a class="path-tab" href="#p6" style="--active-color:var(--p6)"><span class="path-dot" style="--dot-color:var(--p6)"></span>06 Ninja</a>
+  </div>
+</nav>
+
+<main class="container">
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT 1 — STARTER
+════════════════════════════════════════════════ -->
+<section class="project-section p1" id="p1">
+  <div class="project-header">
+    <div class="project-badge">
+      <div class="project-num">1</div>
+      <div class="project-level-tag">Starter</div>
+    </div>
+    <div class="project-info">
+      <div class="project-title">Your First Dashboard</div>
+      <div class="project-desc">Build and launch a real, live website using nothing but the free Claude chat interface. No installation, no terminal, no coding knowledge required. By the end you'll have a working app live on the internet with a URL you can share with anyone.</div>
+      <div class="tool-chips">
+        <span class="chip highlight">Claude Free</span>
+        <span class="chip highlight">GitHub</span>
+        <span class="chip highlight">Vercel</span>
+        <span class="chip">100% Free</span>
+        <span class="chip">No Installation</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="build-ideas">
+    <div class="build-ideas-title">💡 What you can build with these free tools</div>
+    <div class="idea-grid">
+      <div class="idea-item">Personal dashboard</div>
+      <div class="idea-item">Portfolio site</div>
+      <div class="idea-item">Business landing page</div>
+      <div class="idea-item">To-do / task tracker</div>
+      <div class="idea-item">Link in bio page</div>
+      <div class="idea-item">Event countdown timer</div>
+      <div class="idea-item">Recipe collection</div>
+      <div class="idea-item">Simple quiz or poll</div>
+      <div class="idea-item">Price comparison tool</div>
+      <div class="idea-item">Resume / CV page</div>
+      <div class="idea-item">Newsletter signup page</div>
+      <div class="idea-item">Product waitlist page</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">💡</span>
+      <span class="acc-title">Finding Your Project Idea — A Framework for Picking What to Build</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">The best first project is one you actually want to exist. Here's a proven framework for finding it:</p>
+      <div class="step-list" style="margin-top:12px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Find a problem you have personally</div>
+            <div class="step-desc">What do you do manually that feels annoying or repetitive? What do you Google every week? What spreadsheet do you maintain that wishes it were a proper app? Build the tool that solves your own problem first — you understand the requirements perfectly because you are the user.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Stay in scope for your current skill level</div>
+            <div class="step-desc">For Project 1, you want something that fits in a single page, doesn't need user accounts, and doesn't talk to external services. Good scope: a habit tracker, a reference page for your hobby, a tool to calculate something you calculate often. Bad scope for Project 1: an e-commerce store, a social network, or anything that starts with "like Airbnb but for..."</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Use Claude to validate your idea before building</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"I want to build [your idea]. I'm a complete beginner and this is my first project. Is this a good scope for a single-page app with no database? What are the core features I should include and what should I leave out to keep it simple? What might be harder than I expect?"</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-unlock">
+    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
+    <div class="skill-tags">
+      <div class="skill-tag">Prompting Claude</div>
+      <div class="skill-tag">HTML basics</div>
+      <div class="skill-tag">GitHub repos</div>
+      <div class="skill-tag">Vercel deployment</div>
+      <div class="skill-tag">Getting a live URL</div>
+      <div class="skill-tag">Iterating with AI</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🎯</span>
+      <span class="acc-title">What You're Building</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">A personal dashboard web page that shows a live clock, a to-do list that saves between visits, a random motivational quote, and links to your most-used sites. Everything lives in one HTML file — Claude builds it, you ship it.</p>
+      <div class="callout callout-tip" style="margin-top:14px;"><strong>Why this project?</strong> A dashboard touches every core concept — displaying information, saving data, handling user interaction — without needing a server or database. It's the perfect first project.</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">⚙️</span>
+      <span class="acc-title">Step 1 — Set Up Your Accounts</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create a free Claude account</div>
+            <div class="step-desc">Go to <strong>claude.ai</strong> and sign up for free. No credit card needed. The free plan is all you need for this project.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Create a free GitHub account</div>
+            <div class="step-desc">Go to <strong>github.com/signup</strong>. GitHub is where your code lives — think of it as Google Drive for websites. Free plan is all you need.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Create a free Vercel account</div>
+            <div class="step-desc">Go to <strong>vercel.com</strong> and sign up using your GitHub account. Vercel turns your GitHub code into a live website automatically. Free forever for personal projects.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🏗️</span>
+      <span class="acc-title">Step 2 — Build Your Dashboard with Claude</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Open Claude and start a new conversation</div>
+            <div class="step-desc">Go to claude.ai and click New Chat. You're going to describe your dashboard and Claude will build the entire thing for you.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Paste this starter prompt</div>
+            <div class="step-desc">Copy the prompt below exactly, then paste it into Claude and hit Enter:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Build me a personal dashboard as a single HTML file. I want it to include:
+- A live clock showing the current time and date, updating every second
+- A to-do list where I can add tasks, check them off, and delete them. Tasks should save in the browser so they're still there when I refresh the page
+- A random motivational quote that changes each time I reload the page — include at least 10 quotes hardcoded in the file
+- 4 quick-link buttons I can customize with my favorite websites
+- A clean, modern dark theme with a professional look
+
+Make everything work in a single self-contained HTML file with no external dependencies. Add clear comments in the code explaining what each section does."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Review what Claude built</div>
+            <div class="step-desc">Claude will generate the full HTML file. Read through it and make sure it looks complete. If anything is missing, just describe what you want changed in plain English.</div>
+            <div class="callout callout-info" style="margin-top:10px;"><strong>Example follow-up:</strong> "The clock looks good but I want the date to show the full day name, like Monday instead of Mon. Also change the background to navy blue."</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Download the file</div>
+            <div class="step-desc">Click the download icon on the code block Claude generated, or copy all the code and paste it into a text editor. Save it as <code>index.html</code> — the name must be exactly <code>index.html</code>.</div>
+            <div class="callout callout-warn" style="margin-top:10px;"><strong>Mac users:</strong> If using TextEdit, go to Format → Make Plain Text before pasting, then save as index.html. Otherwise it may save as a .rtf file.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🚀</span>
+      <span class="acc-title">Step 3 — Ship It Live with GitHub & Vercel</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create a new GitHub repository</div>
+            <div class="step-desc">Go to <strong>github.com/new</strong>. Name it something like <code>my-dashboard</code>. Set it to Public. Check "Add a README file". Click Create repository.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Upload your index.html</div>
+            <div class="step-desc">Inside your new repository, click <strong>Add file → Upload files</strong>. Drag your <code>index.html</code> onto the page. Scroll down and click <strong>Commit changes</strong>. Your file is now on GitHub.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Deploy to Vercel</div>
+            <div class="step-desc">Go to <strong>vercel.com/new</strong>. Click <strong>Continue with GitHub</strong>. Find your repository and click <strong>Import</strong>. Don't change any settings — just click <strong>Deploy</strong>. Wait 30 seconds.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Your site is live 🎉</div>
+            <div class="step-desc">Vercel will show you a URL like <code>my-dashboard.vercel.app</code>. Click it — your dashboard is now live on the internet. Share it with anyone. It stays live for free as long as your GitHub repo exists.</div>
+            <div class="callout callout-tip" style="margin-top:10px;"><strong>Making updates:</strong> Edit the file in Claude, re-download it, go to your GitHub repo, click index.html, click the pencil edit icon, paste in the new code, and commit. Vercel republishes automatically within seconds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT 2 — BEGINNER
+════════════════════════════════════════════════ -->
+<section class="project-section p2" id="p2">
+  <div class="project-header">
+    <div class="project-badge">
+      <div class="project-num">2</div>
+      <div class="project-level-tag">Beginner</div>
+    </div>
+    <div class="project-info">
+      <div class="project-title">Dashboard with Claude Code</div>
+      <div class="project-desc">Rebuild the dashboard using Claude Code in the terminal. You'll learn how to work with a real development environment, manage files, run commands, and deploy with full control — the foundation for everything that follows.</div>
+      <div class="tool-chips">
+        <span class="chip highlight">Claude Code</span>
+        <span class="chip highlight">GitHub</span>
+        <span class="chip highlight">Vercel</span>
+        <span class="chip">Terminal</span>
+        <span class="chip">Git</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <strong>Requires Claude Code.</strong> Claude Code is Anthropic's terminal tool that lives inside your project folder and can read files, run commands, and build full applications. It requires a Claude Pro subscription ($20/month) or API billing. <a href="#p1" style="color:var(--royal);font-weight:600;">Complete Project 1 first</a> — it covers everything you need to understand before this step.
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🖥️</span>
+      <span class="acc-title">Terminal Crash Course — Everything You Need to Know</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">The terminal is just a text-based way to control your computer. Instead of clicking icons, you type commands. That's it. Here are the only commands you'll use in this course:</p>
+      <div class="step-list" style="margin-top:12px;">
+        <div class="step">
+          <div class="step-num" style="font-size:10px;width:32px;height:32px;">pwd</div>
+          <div class="step-content">
+            <div class="step-title">Where am I?</div>
+            <div class="step-desc"><code>pwd</code> prints your current location. Think of it as asking "what folder am I in right now?"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="font-size:10px;width:32px;height:32px;">ls</div>
+          <div class="step-content">
+            <div class="step-title">What's in this folder?</div>
+            <div class="step-desc"><code>ls</code> (Mac/Linux) or <code>dir</code> (Windows) lists everything in your current folder — like opening a folder in Finder or Explorer.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="font-size:10px;width:32px;height:32px;">cd</div>
+          <div class="step-content">
+            <div class="step-title">Move to a folder</div>
+            <div class="step-desc"><code>cd my-dashboard</code> moves you into a folder called "my-dashboard". <code>cd ..</code> goes up one level. <code>cd ~</code> takes you back home.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="font-size:10px;width:32px;height:32px;">mkdir</div>
+          <div class="step-content">
+            <div class="step-title">Create a folder</div>
+            <div class="step-desc"><code>mkdir my-project</code> creates a new folder called "my-project" in your current location.</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-tip" style="margin-top:14px;"><strong>Pro tip:</strong> Press <code>Tab</code> to auto-complete folder and file names. Press <code>↑</code> arrow to repeat your last command. Press <code>Ctrl+C</code> to cancel anything that's running.</div>
+      <div class="callout callout-warn" style="margin-top:10px;"><strong>File paths demystified:</strong> A path is just directions to a file. <code>/Users/yourname/projects/my-dashboard/index.html</code> means: start at the root, go into Users, then yourname, then projects, then my-dashboard, and the file is index.html. Every file on your computer has a path like this.</div>
+    </div>
+  </div>
+
+  <div class="skill-unlock">
+    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
+    <div class="skill-tags">
+      <div class="skill-tag">Terminal basics</div>
+      <div class="skill-tag">Claude Code setup</div>
+      <div class="skill-tag">File management</div>
+      <div class="skill-tag">Git from terminal</div>
+      <div class="skill-tag">CLAUDE.md</div>
+      <div class="skill-tag">Plan Mode</div>
+      <div class="skill-tag">Error handling</div>
+      <div class="skill-tag">Secrets & .env files</div>
+      <div class="skill-tag">Debugging framework</div>
+      <div class="skill-tag">Git as undo button</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">⚙️</span>
+      <span class="acc-title">Step 1 — Install Claude Code</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Open your terminal</div>
+            <div class="step-desc"><strong>Mac:</strong> Press Cmd + Space, type "Terminal", press Enter. <strong>Windows:</strong> Press Win key, search for "PowerShell", press Enter.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Install Claude Code</div>
+            <div class="step-desc">Paste this command into the terminal and press Enter:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">curl -fsSL https://claude.ai/install.sh | sh</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">On Windows, use WinGet instead:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">winget install Anthropic.ClaudeCode</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Verify installation and log in</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">claude --version</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">Then start Claude Code. A browser window will open for you to log in with your Anthropic account:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">claude</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🏗️</span>
+      <span class="acc-title">Step 2 — Build Your Dashboard</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create a project folder and start Claude Code</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">mkdir my-dashboard
+cd my-dashboard
+claude</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Describe your dashboard</div>
+            <div class="step-desc">Once Claude Code starts, paste this prompt:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Build me a personal dashboard as a single HTML file with:
+- Live clock showing time and date, updating every second
+- To-do list that saves to localStorage
+- Random motivational quote from a list of 10
+- 4 customizable quick-link buttons
+- Clean dark theme, professional look
+Add comments explaining each section. No external dependencies."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Create a CLAUDE.md file</div>
+            <div class="step-desc">This gives Claude persistent memory about your project across sessions. Ask Claude Code to create it:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Create a CLAUDE.md file for this project. Include what the project is, the tech stack, and note that everything should stay in a single HTML file with no external dependencies."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Iterate and improve</div>
+            <div class="step-desc">Ask for changes by describing what you want. If something breaks, paste the error text from your browser console (F12 → Console) directly into Claude Code and describe what happened.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🔐</span>
+      <span class="acc-title">Keeping Secrets Safe — The Most Important Habit in Development</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">Developers lose thousands of dollars every year by accidentally exposing API keys in public GitHub repos. Automated bots scan GitHub constantly and will find and exploit a leaked key within minutes. Here's how to stay safe:</p>
+      <div class="step-list" style="margin-top:12px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Always use a .env file for secrets</div>
+            <div class="step-desc">A <code>.env</code> file holds your API keys, passwords, and credentials. Your code reads from it, but the file itself never goes to GitHub. Ask Claude Code to set one up: <em>"Create a .env file for this project and show me how to read from it in my code."</em></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Always add .env to your .gitignore</div>
+            <div class="step-desc">A <code>.gitignore</code> file lists what Git should never upload. Ask Claude Code: <em>"Make sure .env and any other sensitive files are in .gitignore so they never get pushed to GitHub."</em></div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-comment"># .gitignore — these files stay local only
+</span>.env
+.env.local
+.env.production
+node_modules/
+</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Add secrets to Vercel separately</div>
+            <div class="step-desc">When deploying, Vercel needs those secrets too — but you add them through the Vercel dashboard, not through your code. Go to your project in Vercel → <strong>Settings → Environment Variables</strong> and add each key there.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">What to do if you accidentally commit a secret</div>
+            <div class="step-desc">If you accidentally push a key to GitHub: <strong>immediately</strong> go to the service (Supabase, Stripe, etc.) and revoke that key, then generate a new one. Don't just delete the commit — the key may already be compromised. Speed matters here.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🔧</span>
+      <span class="acc-title">When Things Break — A Debugging Framework</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">Most beginners panic when something breaks. Experienced developers follow a process. Here it is:</p>
+      <div class="step-list" style="margin-top:12px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Open the browser console first</div>
+            <div class="step-desc">Press <code>F12</code> (Windows) or <code>Cmd+Option+I</code> (Mac), click the <strong>Console</strong> tab. Red text = errors. This is where 80% of problems announce themselves. Copy the exact error text — don't try to understand it, just copy it.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Give Claude Code the full picture</div>
+            <div class="step-desc">The best bug report includes: what you expected to happen, what actually happened, and the exact error message. Don't say "it's broken" — say "I clicked the login button and expected to be redirected to the dashboard but instead I got this error: [paste error]"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Git is your undo button</div>
+            <div class="step-desc">If Claude Code makes changes that break something badly, you can always go back to a working state:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">git log --oneline</span><span class="code-comment">        # see your recent commits</span>
+<span class="code-cmd">git checkout abc1234 -- .</span><span class="code-comment">  # restore to that commit</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">This is why committing regularly matters — it creates restore points. Commit every time something works.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">When to simplify instead of debug</div>
+            <div class="step-desc">If you've spent more than 20 minutes on a bug and Claude Code keeps going in circles, the problem is often scope: too many changes at once. Ask Claude Code: <em>"Let's strip this back to the simplest version that should work, confirm it works, then add back features one at a time."</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🚀</span>
+      <span class="acc-title">Step 3 — Deploy with Git & Vercel</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Ask Claude Code to set up git and push to GitHub</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Initialize a git repository in this project, commit all files, then give me the exact commands to push this to a new public GitHub repository called 'my-dashboard'. Explain each step."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Deploy to Vercel</div>
+            <div class="step-desc">Go to <strong>vercel.com/new</strong>, import your GitHub repository, and click Deploy. Your site will be live at a <code>.vercel.app</code> URL within 30 seconds.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Future updates from the terminal</div>
+            <div class="step-desc">After making changes, push updates with:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">git add .
+git commit -m "describe your change"
+git push</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">Vercel auto-redeploys every time you push. Your live site updates within seconds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT 3 — INTERMEDIATE
+════════════════════════════════════════════════ -->
+<section class="project-section p3" id="p3">
+  <div class="project-header">
+    <div class="project-badge">
+      <div class="project-num">3</div>
+      <div class="project-level-tag">Intermediate</div>
+    </div>
+    <div class="project-info">
+      <div class="project-title">Dashboard Creator App</div>
+      <div class="project-desc">Build a real web application where anyone can visit, sign up, and create their own personal dashboard. This is your first multi-user app — complete with a landing page, user accounts, a dashboard builder, and a database to save everything.</div>
+      <div class="tool-chips">
+        <span class="chip highlight">Claude Code</span>
+        <span class="chip highlight">Supabase</span>
+        <span class="chip highlight">Vercel</span>
+        <span class="chip">User Auth</span>
+        <span class="chip">Database</span>
+        <span class="chip">React</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-unlock">
+    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
+    <div class="skill-tags">
+      <div class="skill-tag">React basics</div>
+      <div class="skill-tag">User authentication</div>
+      <div class="skill-tag">Supabase database</div>
+      <div class="skill-tag">Sign up / login flows</div>
+      <div class="skill-tag">Saving user data</div>
+      <div class="skill-tag">Multi-page routing</div>
+      <div class="skill-tag">Environment variables</div>
+      <div class="skill-tag">CSS & layout basics</div>
+      <div class="skill-tag">Pre-ship testing checklist</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🎯</span>
+      <span class="acc-title">What You're Building</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout callout-info" style="margin-top:14px;">
+        <strong>Pages you'll build:</strong><br>
+        <strong>Landing page</strong> — explains what the app does and has a Sign Up button<br>
+        <strong>Sign up / Login</strong> — users create an account with email and password<br>
+        <strong>Dashboard builder</strong> — logged-in users customize their own dashboard with widgets<br>
+        <strong>My Dashboard</strong> — the user's finished dashboard, saved and persistent
+      </div>
+      <ul class="plain-list" style="margin-top:12px;">
+        <li>Users who aren't logged in only see the landing page</li>
+        <li>Each user's dashboard is private and only visible to them</li>
+        <li>Data is saved to a real database — it persists even if the user clears their browser</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🎨</span>
+      <span class="acc-title">CSS & Layout Fundamentals — How to Control How Things Look</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">You don't need to learn all of CSS. You need to understand the mental model so you can describe visual problems clearly to Claude Code — and understand why it makes the changes it does.</p>
+      <div class="step-list" style="margin-top:12px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Everything is a box</div>
+            <div class="step-desc">Every element on a webpage — a button, a paragraph, an image — is a rectangular box. CSS controls the size of the box (<code>width</code>, <code>height</code>), the space inside it (<code>padding</code>), the space outside it (<code>margin</code>), and its border (<code>border</code>). Understanding this one concept explains 60% of layout behaviour.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Flexbox: the layout tool you'll use most</div>
+            <div class="step-desc">Adding <code>display: flex</code> to a container puts its children in a row. <code>justify-content: center</code> centers them horizontally. <code>align-items: center</code> centers them vertically. <code>flex-direction: column</code> stacks them vertically. That's 80% of what flexbox does — and 80% of what you'll need.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Describing visual problems to Claude Code</div>
+            <div class="step-desc">Don't say "fix the layout". Say: <em>"The login button is touching the top of the input field — I want 16px of space between them."</em> Or: <em>"The card is 100% width on mobile — it should be narrower with some margin on the sides."</em> Specific, visual, measurable descriptions get better results.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Use the browser inspector to investigate</div>
+            <div class="step-desc">In browser dev tools (F12), hover over any element to see its box, padding, margin, and CSS properties. Right-click any element on your page and choose <strong>Inspect</strong>. You can even edit CSS live in the browser to experiment before asking Claude Code to make the change permanently.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">✅</span>
+      <span class="acc-title">Testing Your App Before Shipping</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">Most bugs that reach users could have been caught with 15 minutes of systematic testing before deployment. Here's the checklist to run before every push:</p>
+      <ul class="plain-list" style="margin-top:12px;">
+        <li><strong>Happy path:</strong> Sign up as a new user → build a dashboard → log out → log back in → confirm dashboard saved</li>
+        <li><strong>Error states:</strong> Try to sign up with an already-used email. Try logging in with the wrong password. What does the user see?</li>
+        <li><strong>Mobile check:</strong> Open Chrome DevTools (F12), click the phone icon to toggle mobile view. Does the layout break at 375px (iPhone) width?</li>
+        <li><strong>Console check:</strong> Open the console (F12 → Console). Are there any red errors during normal use?</li>
+        <li><strong>Second browser:</strong> Open your app in an incognito/private window. This simulates a fresh user with no cookies or localStorage — a common source of bugs.</li>
+        <li><strong>Ask Claude Code:</strong> <em>"Review this app and identify any obvious bugs, missing error states, or ways a user might break it."</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🗄️</span>
+      <span class="acc-title">Step 1 — Set Up Supabase (Your Free Database)</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create a free Supabase account</div>
+            <div class="step-desc">Go to <strong>supabase.com</strong> and sign up. Click <strong>New Project</strong>, give it a name like "dashboard-creator", choose a region close to you, and set a database password. Free tier includes everything you need.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Get your API credentials</div>
+            <div class="step-desc">In your Supabase project, go to <strong>Settings → API</strong>. Copy your <strong>Project URL</strong> and <strong>anon/public key</strong> — you'll need these in the next step. Keep them safe and never share them publicly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🏗️</span>
+      <span class="acc-title">Step 2 — Build the App with Claude Code</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create a new project folder and start Claude Code</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">mkdir dashboard-creator
+cd dashboard-creator
+claude</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Describe the full app to Claude Code</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Build a web app called Dashboard Creator using React and Supabase. The app should have:
+
+1. A landing page that explains the app and has Sign Up and Log In buttons
+2. A sign up page where users register with email and password using Supabase Auth
+3. A login page for returning users
+4. A dashboard builder page (only accessible when logged in) where users can add and arrange widgets including: a clock, a to-do list, a quote of the day, and custom links
+5. The dashboard layout should save to Supabase so it persists between sessions
+6. A logout button
+
+My Supabase URL is: [PASTE YOUR URL]
+My Supabase anon key is: [PASTE YOUR KEY]
+
+Store credentials in a .env file. Add clear comments throughout. I'm a beginner so explain your approach before writing any code."</span></span>
+            </div>
+            <div class="callout callout-warn" style="margin-top:10px;"><strong>Before running this prompt:</strong> Replace [PASTE YOUR URL] and [PASTE YOUR KEY] with your actual Supabase credentials from Step 1.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Start the development server to preview your app</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Install all dependencies and start the development server so I can see the app in my browser."</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">Claude Code will run <code>npm install</code> and <code>npm start</code>. Your app will open at <code>localhost:3000</code> in your browser — this is a live preview running on your computer.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Test the full user flow</div>
+            <div class="step-desc">In your browser, go through the complete journey: visit the landing page → sign up as a new user → build a dashboard → log out → log back in and verify your dashboard is still there. Report anything that doesn't work to Claude Code.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🚀</span>
+      <span class="acc-title">Step 3 — Deploy to Vercel</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Push to GitHub</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Initialize git, create a .gitignore that excludes .env files, commit everything, and give me commands to push to a new GitHub repository called 'dashboard-creator'."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Add environment variables in Vercel</div>
+            <div class="step-desc">Import your repo on <strong>vercel.com/new</strong>. Before clicking Deploy, go to <strong>Environment Variables</strong> and add your Supabase URL and anon key. These replace the .env file on the live server — never put real credentials in your code.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Deploy and test the live app</div>
+            <div class="step-desc">Click Deploy. Once live, test sign up and login on the real URL — not just locally. The first user to sign up will be you, confirming everything works end to end.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT 4 — ADVANCED
+════════════════════════════════════════════════ -->
+<section class="project-section p4" id="p4">
+  <div class="project-header">
+    <div class="project-badge">
+      <div class="project-num">4</div>
+      <div class="project-level-tag">Advanced</div>
+    </div>
+    <div class="project-info">
+      <div class="project-title">Admin Dashboard</div>
+      <div class="project-desc">Add a private admin area to your Dashboard Creator where you can see every user who has signed up, manage their accounts, view what they've built, and control their membership status. The foundation of any real SaaS business.</div>
+      <div class="tool-chips">
+        <span class="chip highlight">Claude Code</span>
+        <span class="chip highlight">Supabase</span>
+        <span class="chip">Role-Based Access</span>
+        <span class="chip">User Management</span>
+        <span class="chip">Admin Panel</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-unlock">
+    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
+    <div class="skill-tags">
+      <div class="skill-tag">User roles & permissions</div>
+      <div class="skill-tag">Admin-only routes</div>
+      <div class="skill-tag">Database queries</div>
+      <div class="skill-tag">Password reset flows</div>
+      <div class="skill-tag">Data tables & sorting</div>
+      <div class="skill-tag">Membership tiers</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🎯</span>
+      <span class="acc-title">What You're Building</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout callout-info" style="margin-top:14px;"><strong>The admin area is only visible to you</strong> — regular users can't access it. You'll have a private dashboard at <code>/admin</code> that shows:</div>
+      <ul class="plain-list" style="margin-top:12px;">
+        <li>A table of all users — name, email, signup date, last login</li>
+        <li>What dashboard widgets each user has created</li>
+        <li>Whether each user is on a free or paid plan</li>
+        <li>Ability to send a password reset email to any user</li>
+        <li>Ability to deactivate or delete a user account</li>
+        <li>Summary stats — total users, new this week, paid vs free</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🔐</span>
+      <span class="acc-title">Step 1 — Set Up Admin Role in Supabase</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Ask Claude Code to add a role system</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"I want to add an admin area to my Dashboard Creator app. Before writing any code, give me a plan for:
+1. How to add a role field to users (admin vs regular)
+2. How to protect the /admin route so only admin users can access it
+3. What database tables or changes I'll need in Supabase
+4. How to make my account the first admin
+
+Walk me through the plan step by step before changing anything."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Apply the database changes</div>
+            <div class="step-desc">Once you've reviewed and approved Claude's plan, ask it to implement the Supabase changes. Claude Code will give you SQL commands to run in the Supabase SQL editor to add the role column and set your account as admin.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🏗️</span>
+      <span class="acc-title">Step 2 — Build the Admin Panel</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Build the admin UI</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Build an admin panel at /admin that is only accessible to users with the admin role. It should include:
+
+1. An overview section showing: total users, users who signed up this week, number of paid vs free users
+2. A users table with columns: email, signup date, last login, plan (free/paid), number of dashboards created
+3. For each user: a button to send them a password reset email, a button to view what dashboards they've built, and a button to deactivate their account
+4. The table should be sortable by signup date and searchable by email
+
+Redirect non-admin users away from /admin immediately."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Test with a second user account</div>
+            <div class="step-desc">Sign up with a second email address to create a regular user account. Log into your admin account and verify the new user appears in the table. Test the password reset button — you should receive an email. Try accessing <code>/admin</code> while logged in as the regular user — it should redirect away.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Deploy the update</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">git add .
+git commit -m "add admin panel"
+git push</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT 5 — PRO
+════════════════════════════════════════════════ -->
+<section class="project-section p5" id="p5">
+  <div class="project-header">
+    <div class="project-badge">
+      <div class="project-num">5</div>
+      <div class="project-level-tag">Pro</div>
+    </div>
+    <div class="project-info">
+      <div class="project-title">Mobile App</div>
+      <div class="project-desc">Convert your Dashboard Creator into a mobile app that users can download and install on their iPhone or Android. Your users get a native app experience — yours to build, yours to distribute.</div>
+      <div class="tool-chips">
+        <span class="chip highlight">Claude Code</span>
+        <span class="chip highlight">React Native</span>
+        <span class="chip highlight">Expo</span>
+        <span class="chip">iOS</span>
+        <span class="chip">Android</span>
+        <span class="chip">App Store</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-unlock">
+    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
+    <div class="skill-tags">
+      <div class="skill-tag">React Native</div>
+      <div class="skill-tag">Expo setup</div>
+      <div class="skill-tag">Mobile UI patterns</div>
+      <div class="skill-tag">App testing on device</div>
+      <div class="skill-tag">iOS & Android builds</div>
+      <div class="skill-tag">App Store prep</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🎯</span>
+      <span class="acc-title">What You're Building</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout callout-info" style="margin-top:14px;"><strong>Same app, native experience.</strong> Your existing Dashboard Creator logic and Supabase database stay exactly the same. You're converting the frontend into React Native so it runs natively on phones — not just in a mobile browser.</div>
+      <ul class="plain-list" style="margin-top:12px;">
+        <li>Users sign up and log in on their phone</li>
+        <li>Dashboard builder adapted for touch and mobile screen sizes</li>
+        <li>Their data stays in the same Supabase database as the web app</li>
+        <li>Testable on your phone immediately using the Expo Go app</li>
+        <li>Ready to submit to the App Store and Google Play</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">⚙️</span>
+      <span class="acc-title">Step 1 — Set Up Expo</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Install Expo and create a new project</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">npx create-expo-app dashboard-creator-mobile
+cd dashboard-creator-mobile
+claude</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Install Expo Go on your phone</div>
+            <div class="step-desc">Search for <strong>Expo Go</strong> in the App Store or Google Play and install it. This lets you see your app live on your phone as you build it — no App Store submission required during development.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🏗️</span>
+      <span class="acc-title">Step 2 — Convert Your App to Mobile</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Ask Claude Code to convert the app</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"I have a React web app called Dashboard Creator that uses Supabase for auth and data. I want to convert it into a React Native / Expo mobile app. Before building anything:
+
+1. Explain what changes when going from React web to React Native
+2. List which parts of my existing code I can reuse vs what needs to be rewritten
+3. Give me a plan for converting each screen (landing, login, signup, dashboard builder)
+
+Then build the mobile version screen by screen, starting with auth."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Preview on your phone in real time</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">npx expo start</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">A QR code appears in your terminal. Open Expo Go on your phone and scan it. Your app appears on your phone instantly — it updates live every time Claude Code makes a change.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Refine for mobile experience</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Review the app on mobile and identify anything that doesn't feel native — buttons that are too small to tap, text that's too small to read, layouts that don't use the screen well. Fix each issue and explain what you changed."</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🚀</span>
+      <span class="acc-title">Step 3 — Build for App Store Submission</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create an Expo account and configure your app</div>
+            <div class="step-desc">Sign up at <strong>expo.dev</strong>. Then ask Claude Code to update your <code>app.json</code> with your app name, bundle ID, icons, and splash screen.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Build the app for submission</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Walk me through building this app for both iOS and Android submission using EAS Build. I want to submit to both the App Store and Google Play. Explain each step — I haven't done this before."</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT 6 — NINJA
+════════════════════════════════════════════════ -->
+<section class="project-section p6" id="p6">
+  <div class="project-header">
+    <div class="project-badge">
+      <div class="project-num">6</div>
+      <div class="project-level-tag">Ninja</div>
+    </div>
+    <div class="project-info">
+      <div class="project-title">Monetization — Charge for Premium Features</div>
+      <div class="project-desc">Add real payment processing to your Dashboard Creator. Users pay $1 to unlock a premium dashboard section — you collect the money, Stripe handles everything else. Your first dollar from software you built yourself.</div>
+      <div class="tool-chips">
+        <span class="chip highlight">Claude Code</span>
+        <span class="chip highlight">Stripe</span>
+        <span class="chip highlight">Supabase</span>
+        <span class="chip">Payments</span>
+        <span class="chip">Webhooks</span>
+        <span class="chip">Subscriptions</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-unlock">
+    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
+    <div class="skill-tags">
+      <div class="skill-tag">Stripe integration</div>
+      <div class="skill-tag">Payment flows</div>
+      <div class="skill-tag">Webhooks</div>
+      <div class="skill-tag">Gating features by payment</div>
+      <div class="skill-tag">Serverless functions</div>
+      <div class="skill-tag">Real revenue</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🎯</span>
+      <span class="acc-title">What You're Building</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout callout-info" style="margin-top:14px;"><strong>The flow you'll build:</strong> A user is on their dashboard and sees a locked premium widget. They click "Unlock for $1". A Stripe checkout page opens. They pay. They're sent back to your app. The widget is now unlocked — permanently, stored in your database.</div>
+      <ul class="plain-list" style="margin-top:12px;">
+        <li>Premium widget is visually locked for free users with an "Unlock for $1" button</li>
+        <li>Clicking opens Stripe's hosted checkout — you never handle card details</li>
+        <li>After payment, Stripe sends a webhook to your app to confirm</li>
+        <li>Your app updates the user's record in Supabase to mark them as paid</li>
+        <li>The widget unlocks immediately — no page refresh needed</li>
+        <li>Admin panel (from Project 4) shows paid vs free users correctly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">💳</span>
+      <span class="acc-title">Step 1 — Set Up Stripe</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create a free Stripe account</div>
+            <div class="step-desc">Go to <strong>stripe.com</strong> and sign up. You can test payments without a business account — Stripe provides test card numbers so no real money moves during development.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Create a $1 product in Stripe</div>
+            <div class="step-desc">In your Stripe dashboard, go to <strong>Products → Add Product</strong>. Name it "Premium Dashboard Widget". Set the price to $1 one-time. Copy the <strong>Price ID</strong> — it looks like <code>price_abc123</code>. You'll need this in the next step.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Get your Stripe API keys</div>
+            <div class="step-desc">Go to <strong>Developers → API Keys</strong>. Copy your <strong>Publishable key</strong> and <strong>Secret key</strong>. Keep the secret key private — it goes in your .env file only, never in your code.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🏗️</span>
+      <span class="acc-title">Step 2 — Build the Payment Flow</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Ask Claude Code to add Stripe checkout</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Add a payment flow to my Dashboard Creator app using Stripe. Here's what I need:
+
+1. A premium widget on the dashboard that is locked/blurred for free users with an 'Unlock for $1' button
+2. Clicking the button creates a Stripe Checkout session and redirects the user to Stripe's payment page
+3. After successful payment, Stripe redirects back to my app and a webhook fires
+4. The webhook updates the user's record in Supabase to mark them as a paid member
+5. The premium widget unlocks for that user permanently
+
+My Stripe publishable key: [YOUR PUBLISHABLE KEY]
+My Stripe price ID: [YOUR PRICE ID]
+Store the secret key in .env
+
+Before coding, explain your plan for the webhook and how it connects Stripe to Supabase."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Test with Stripe's test card</div>
+            <div class="step-desc">Stripe provides a test card number for development — no real money is charged. Use card number <code>4242 4242 4242 4242</code>, any future expiry date, and any 3-digit CVV. This simulates a real payment in test mode.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Set up the webhook locally for testing</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"How do I test the Stripe webhook locally before deploying? Walk me through using the Stripe CLI to forward webhook events to my local development server."</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🚀</span>
+      <span class="acc-title">Step 3 — Deploy and Go Live</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Add Stripe keys to Vercel environment variables</div>
+            <div class="step-desc">In your Vercel project, go to <strong>Settings → Environment Variables</strong> and add your Stripe publishable key, secret key, and webhook signing secret. Never put these in your code or GitHub.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Register your live webhook URL in Stripe</div>
+            <div class="step-desc">In Stripe dashboard, go to <strong>Developers → Webhooks → Add Endpoint</strong>. Enter your live Vercel URL + <code>/api/webhook</code>. Select the <code>checkout.session.completed</code> event. Copy the signing secret and add it to Vercel.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Switch Stripe from test mode to live mode</div>
+            <div class="step-desc">In Stripe, toggle from Test Mode to Live Mode. Replace your test API keys in Vercel with the live keys. Do a final real payment test with an actual card — charge yourself $1 to confirm everything works. You'll see it appear in your Stripe dashboard within seconds.</div>
+            <div class="callout callout-tip" style="margin-top:10px;"><strong>Congratulations.</strong> You've built a complete SaaS product — authentication, a database, an admin panel, a mobile app, and real payment processing. That's the full stack.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-title">Zero to Shipped</div>
+  <p>Build & Launch Real Apps with AI · Created with Claude · 100% Free to Start</p>
+</footer>
+
+<script>
+function toggle(header) {
+  const acc = header.parentElement;
+  acc.classList.toggle('open');
+}
+
+// Smooth scroll nav
+document.querySelectorAll('.path-tab').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Progress bar
+function updateProgress() {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+
+// Active nav highlight
+const sections = document.querySelectorAll('.project-section');
+const tabs = document.querySelectorAll('.path-tab');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      tabs.forEach(t => t.classList.remove('active'));
+      const id = entry.target.id;
+      const active = document.querySelector(`.path-tab[href="#${id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => observer.observe(s));
+
+// Copy buttons
+const COPY_ICON = `<span class="copy-emoji">⧉</span><span class="copied-check">✓</span>`;
+
+function makeCopyBtn(getText) {
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn';
+  btn.innerHTML = COPY_ICON;
+  btn.title = 'Copy to clipboard';
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(getText().trim()).then(() => {
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 2000);
+    });
+  });
+  return btn;
+}
+
+document.querySelectorAll('span.code-block').forEach(block => {
+  const parent = block.parentElement;
+  if (!parent.classList.contains('copyable-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'copyable-wrap';
+    block.parentNode.insertBefore(wrap, block);
+    wrap.appendChild(block);
+  }
+  block.parentElement.appendChild(makeCopyBtn(() => block.innerText || block.textContent));
+});
+</script>
+</body>
+</html>

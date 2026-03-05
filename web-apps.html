@@ -1547,12 +1547,38 @@ git push</span></span>
           <div class="step-content">
             <div class="step-title">Google SSO — Let users sign in with their Google account</div>
             <div class="step-desc">Google SSO (Single Sign-On) means users click "Continue with Google" instead of creating a password. It dramatically increases sign-up rates and removes the friction of forgotten passwords. Supabase handles all the complexity.</div>
-            <div class="step-desc" style="margin-top:8px;"><strong>Step 1 — Enable Google in Supabase:</strong> In your Supabase dashboard go to <strong>Authentication → Providers → Google</strong> and toggle it on. You'll need a Google Client ID and Secret — follow the link Supabase provides to create them in Google Cloud Console for free.</div>
-            <div class="step-desc" style="margin-top:8px;"><strong>Step 2 — Add to your app:</strong></div>
-            <div class="copyable-wrap">
+
+            <div class="step-desc" style="margin-top:12px;"><strong>Part 1 — Create a Google Cloud project and get your credentials</strong></div>
+            <div class="step-list" style="margin-top:8px;border-left:3px solid var(--p3);padding-left:16px;">
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>1.</strong> Go to <strong>console.cloud.google.com</strong> and sign in with your Google account.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>2.</strong> Click the project dropdown at the top → <strong>New Project</strong>. Name it "dashboard-creator" and click <strong>Create</strong>.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>3.</strong> Click the <strong>☰ hamburger menu</strong> (top left) → <strong>APIs & Services → OAuth consent screen</strong>. Google may redirect you to the new <strong>Google Auth Platform</strong> page instead — that's the same thing with a new name. You'll see a <strong>Get started</strong> button in the middle of the screen. Click it.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>4.</strong> Fill in <strong>App name</strong> (e.g. "Dashboard Creator") and <strong>User support email</strong> (your email). Click <strong>Next</strong>.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>5.</strong> On the <strong>Audience</strong> screen select <strong>External</strong> and click <strong>Next</strong>.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>6.</strong> On the <strong>Contact Information</strong> screen enter your email and click <strong>Next</strong>.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>7.</strong> On the <strong>Finish</strong> screen check the agreement box and click <strong>Create</strong>. You'll land on the Google Auth Platform dashboard.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>8.</strong> In the left sidebar click <strong>Clients</strong> → <strong>+ Create Client</strong>. Set Application type to <strong>Web application</strong> and name it "Dashboard Creator Web".</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>9.</strong> Under <strong>Authorised JavaScript origins</strong> click <strong>+ Add URI</strong> and add your Supabase project URL: <code>https://xxxxxxxxxxxx.supabase.co</code></div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>10.</strong> Under <strong>Authorised redirect URIs</strong> click <strong>+ Add URI</strong> and add: <code>https://xxxxxxxxxxxx.supabase.co/auth/v1/callback</code> — replace <code>xxxxxxxxxxxx</code> with your Supabase project's subdomain.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>11.</strong> Click <strong>Create</strong>. A popup shows your <strong>Client ID</strong> and <strong>Client Secret</strong> — copy both and keep them safe.</div>
+            </div>
+
+            <div class="step-desc" style="margin-top:12px;"><strong>Part 2 — Enable Google in Supabase</strong></div>
+            <div class="step-list" style="margin-top:8px;border-left:3px solid var(--p3);padding-left:16px;">
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>1.</strong> In your Supabase dashboard go to <strong>Authentication → Providers</strong>. Find <strong>Google</strong> in the list and click it.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>2.</strong> Toggle <strong>Enable Sign in with Google</strong> on.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>3.</strong> Paste your <strong>Client ID</strong> and <strong>Client Secret</strong> from Part 1 into the fields provided. Click <strong>Save</strong>.</div>
+            </div>
+
+            <div class="step-desc" style="margin-top:12px;"><strong>Part 3 — Add the button to your app</strong></div>
+            <div class="copyable-wrap" style="margin-top:8px;">
               <span class="code-block"><span class="code-str">"Add Google SSO to my Dashboard Creator app using Supabase Auth. Add a 'Continue with Google' button to both the sign up and login pages. When clicked it should open Google's login flow and redirect back to the dashboard on success. Keep the existing email/password option as well."</span></span>
             </div>
-            <div class="step-desc" style="margin-top:8px;"><strong>Step 3 — Add your live URL to Google:</strong> In Google Cloud Console, add your Vercel URL to the list of authorised redirect URIs, then redeploy.</div>
+
+            <div class="step-desc" style="margin-top:12px;"><strong>Part 4 — Add your live Vercel URL to Google</strong></div>
+            <div class="step-desc" style="margin-top:6px;">After deploying, go back to <strong>Google Cloud Console → APIs & Services → Credentials</strong>, click your OAuth client, and add your live Vercel URL (e.g. <code>https://dashboard-creator.vercel.app</code>) to both <strong>Authorised JavaScript origins</strong> and <strong>Authorised redirect URIs</strong>. Then redeploy once more to pick up the change.</div>
+
+            <div class="callout callout-tip" style="margin-top:12px;"><strong>Testing Google login:</strong> Google requires the app to be in "production" mode before external users can log in. In Google Cloud Console go to <strong>OAuth consent screen → Publishing status</strong> and click <strong>Publish App</strong>. This is free and instant for basic scopes.</div>
           </div>
         </div>
 
@@ -2092,12 +2118,35 @@ function makeCopyBtn(getText) {
   btn.title = 'Copy to clipboard';
   btn.addEventListener('click', e => {
     e.stopPropagation();
-    navigator.clipboard.writeText(getText().trim()).then(() => {
-      btn.classList.add('copied');
-      setTimeout(() => btn.classList.remove('copied'), 2000);
-    });
+    e.preventDefault();
+    const text = typeof getText === 'function' ? getText() : getText;
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(trimmed).then(() => {
+        btn.classList.add('copied');
+        setTimeout(() => btn.classList.remove('copied'), 2000);
+      }).catch(() => fallbackCopy(trimmed, btn));
+    } else {
+      fallbackCopy(trimmed, btn);
+    }
   });
   return btn;
+}
+
+function fallbackCopy(text, btn) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand('copy');
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 2000);
+  } catch(e) {}
+  document.body.removeChild(ta);
 }
 
 // ── STEP CHECKBOXES ──
@@ -2171,7 +2220,19 @@ document.querySelectorAll('span.code-block').forEach(block => {
     block.parentNode.insertBefore(wrap, block);
     wrap.appendChild(block);
   }
-  block.parentElement.appendChild(makeCopyBtn(() => block.innerText || block.textContent));
+
+  function getCleanText() {
+    // Clone the block, remove any injected buttons, get plain text
+    const clone = block.cloneNode(true);
+    clone.querySelectorAll('button, .copy-btn, .step-check').forEach(el => el.remove());
+    return (clone.innerText || clone.textContent || '').trim();
+  }
+
+  // Remove any previously injected copy button to avoid duplicates
+  const existing = block.parentElement.querySelector('.copy-btn');
+  if (existing) existing.remove();
+
+  block.parentElement.appendChild(makeCopyBtn(getCleanText));
 });
 </script>
 </body>

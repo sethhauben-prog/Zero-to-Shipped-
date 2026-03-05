@@ -983,8 +983,30 @@ Add comments explaining each section. No external dependencies."</span></span>
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-content">
+            <div class="step-title">Preview your app in the browser — before deploying</div>
+            <div class="step-desc">Your project is a single HTML file, so you don't need a server to preview it. Just open it directly in your browser:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-comment"># Mac</span>
+<span class="code-cmd">open index.html</span>
+
+<span class="code-comment"># Windows</span>
+<span class="code-cmd">start index.html</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">Or in Finder / File Explorer, just double-click the <code>index.html</code> file — it opens in your default browser. You'll see your dashboard running locally. This is your live preview while you build. Every time you ask Claude Code to make a change, save the file and refresh the browser tab to see the update.</div>
+            <div class="callout callout-tip" style="margin-top:10px;"><strong>Nothing to install, no server needed.</strong> Because Project 2 is a plain HTML file with no framework, the browser runs it directly from your hard drive. You'll see <code>file:///Users/yourname/my-dashboard/index.html</code> in the address bar — that's normal. It only becomes a real URL after you deploy to Vercel.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
             <div class="step-title">Iterate and improve</div>
-            <div class="step-desc">Ask for changes by describing what you want. If something breaks, paste the error text from your browser console (F12 → Console) directly into Claude Code and describe what happened.</div>
+            <div class="step-desc">Ask for changes by describing what you want. If something breaks, paste the error text from your browser console (F12 → Console) directly into Claude Code and describe what happened. Here are some ideas to try:</div>
+            <ul class="plain-list" style="margin-top:10px;">
+              <li><strong>Add a weather widget</strong> — <em>"Add a weather widget that shows the current temperature and conditions for my city using the Open-Meteo free API (no API key required)."</em></li>
+              <li><strong>Add a Pomodoro timer</strong> — <em>"Add a 25-minute focus timer with a start/pause/reset button and an alert sound when time is up. Style it to match the rest of the dashboard."</em></li>
+              <li><strong>Customise the colour theme</strong> — <em>"Add a theme switcher in the top corner with 3 colour options: dark (current), light, and a deep navy blue. Save the user's preference so it persists on refresh."</em></li>
+              <li><strong>Add a daily journal section</strong> — <em>"Add a small daily notes section where I can type a few lines each day. Save each day's note separately using the date as the key in localStorage so I can see previous days."</em></li>
+            </ul>
           </div>
         </div>
       </div>

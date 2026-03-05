@@ -1489,6 +1489,23 @@ Store credentials in a .env file. Add clear comments throughout. I'm a beginner 
             <div class="step-desc">Click Deploy. Once live, test sign up and login on the real URL — not just locally. The first user to sign up will be you, confirming everything works end to end.</div>
           </div>
         </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Update the live app</div>
+            <div class="step-desc">Now that it's live, make your first update. Open Claude Code in your project folder and ask it to make this change:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"On the landing page, remove the Log In button that sits next to the Get Started — It's Free button. Keep the Get Started button exactly as it is."</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">Once Claude Code makes the change, push it live:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">git add .
+git commit -m "remove login button from landing page"
+git push</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">Vercel will redeploy automatically within 30 seconds. Refresh your live URL to confirm the button is gone. This is the full update cycle you'll use every time you change the app.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

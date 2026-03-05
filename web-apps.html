@@ -1147,6 +1147,15 @@ git commit -m "describe your change"
 git push</span></span>
             </div>
             <div class="step-desc" style="margin-top:8px;">Vercel auto-redeploys every time you push. Your live site updates within seconds.</div>
+            <div class="callout callout-tip" style="margin-top:12px;">
+              <strong>💡 Ideas for your next update — try these with Claude Code:</strong>
+              <ul class="plain-list" style="margin-top:8px;">
+                <li><strong>Weather widget</strong> — <em>"Add a weather widget showing current temperature for [your city] using the Open-Meteo free API. No API key needed."</em></li>
+                <li><strong>Pomodoro timer</strong> — <em>"Add a 25-minute focus timer with start/pause/reset and a soft alert sound when time is up."</em></li>
+                <li><strong>Theme switcher</strong> — <em>"Add a theme toggle between dark and light mode in the top corner. Save the preference in localStorage."</em></li>
+                <li><strong>Daily journal</strong> — <em>"Add a daily notes section that saves each day's entry separately by date so I can read back previous days."</em></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -1192,6 +1201,7 @@ git push</span></span>
     </div>
   </div>
 
+  <!-- 1. What You're Building -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggle(this)">
       <span class="acc-icon">🎯</span>
@@ -1214,66 +1224,7 @@ git push</span></span>
     </div>
   </div>
 
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggle(this)">
-      <span class="acc-icon">🎨</span>
-      <span class="acc-title">CSS & Layout Fundamentals — How to Control How Things Look</span>
-      <span class="acc-chevron">▾</span>
-    </div>
-    <div class="accordion-body">
-      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">You don't need to learn all of CSS. You need to understand the mental model so you can describe visual problems clearly to Claude Code — and understand why it makes the changes it does.</p>
-      <div class="step-list" style="margin-top:12px;">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <div class="step-title">Everything is a box</div>
-            <div class="step-desc">Every element on a webpage — a button, a paragraph, an image — is a rectangular box. CSS controls the size of the box (<code>width</code>, <code>height</code>), the space inside it (<code>padding</code>), the space outside it (<code>margin</code>), and its border (<code>border</code>). Understanding this one concept explains 60% of layout behaviour.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-title">Flexbox: the layout tool you'll use most</div>
-            <div class="step-desc">Adding <code>display: flex</code> to a container puts its children in a row. <code>justify-content: center</code> centers them horizontally. <code>align-items: center</code> centers them vertically. <code>flex-direction: column</code> stacks them vertically. That's 80% of what flexbox does — and 80% of what you'll need.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <div class="step-title">Describing visual problems to Claude Code</div>
-            <div class="step-desc">Don't say "fix the layout". Say: <em>"The login button is touching the top of the input field — I want 16px of space between them."</em> Or: <em>"The card is 100% width on mobile — it should be narrower with some margin on the sides."</em> Specific, visual, measurable descriptions get better results.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-content">
-            <div class="step-title">Use the browser inspector to investigate</div>
-            <div class="step-desc">In browser dev tools (F12), hover over any element to see its box, padding, margin, and CSS properties. Right-click any element on your page and choose <strong>Inspect</strong>. You can even edit CSS live in the browser to experiment before asking Claude Code to make the change permanently.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggle(this)">
-      <span class="acc-icon">✅</span>
-      <span class="acc-title">Testing Your App Before Shipping</span>
-      <span class="acc-chevron">▾</span>
-    </div>
-    <div class="accordion-body">
-      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">Most bugs that reach users could have been caught with 15 minutes of systematic testing before deployment. Here's the checklist to run before every push:</p>
-      <ul class="plain-list" style="margin-top:12px;">
-        <li><strong>Happy path:</strong> Sign up as a new user → build a dashboard → log out → log back in → confirm dashboard saved</li>
-        <li><strong>Error states:</strong> Try to sign up with an already-used email. Try logging in with the wrong password. What does the user see?</li>
-        <li><strong>Mobile check:</strong> Open Chrome DevTools (F12), click the phone icon to toggle mobile view. Does the layout break at 375px (iPhone) width?</li>
-        <li><strong>Console check:</strong> Open the console (F12 → Console). Are there any red errors during normal use?</li>
-        <li><strong>Second browser:</strong> Open your app in an incognito/private window. This simulates a fresh user with no cookies or localStorage — a common source of bugs.</li>
-        <li><strong>Ask Claude Code:</strong> <em>"Review this app and identify any obvious bugs, missing error states, or ways a user might break it."</em></li>
-      </ul>
-    </div>
-  </div>
-
+  <!-- 2. Step 1 — Set Up Supabase -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggle(this)">
       <span class="acc-icon">🗄️</span>
@@ -1300,6 +1251,7 @@ git push</span></span>
     </div>
   </div>
 
+  <!-- 3. Keeping Secrets Safe -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggle(this)">
       <span class="acc-icon">🔐</span>
@@ -1351,6 +1303,7 @@ node_modules/</span>
     </div>
   </div>
 
+  <!-- 4. Step 2 — Build the App -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggle(this)">
       <span class="acc-icon">🏗️</span>
@@ -1380,7 +1333,19 @@ claude</span></span>
 1. A landing page that explains the app and has Sign Up and Log In buttons
 2. A sign up page where users register with email and password using Supabase Auth
 3. A login page for returning users
-4. A dashboard builder page (only accessible when logged in) where users can add and arrange widgets including: a clock, a to-do list, a quote of the day, and custom links
+4. A dashboard builder page (only accessible when logged in) where users can add and arrange widgets. Include these 12 widget options for users to choose from:
+   - 🕐 Clock — live time and date
+   - ✅ To-do list — add, check off, and delete tasks
+   - 💬 Quote of the day — a new motivational quote each day
+   - 🔗 Quick links — up to 6 custom bookmarks with labels
+   - 🌤 Weather — current temperature and conditions for their city (using Open-Meteo, no API key needed)
+   - 📝 Daily notes — a short text area that saves a separate entry for each date
+   - 📈 Habit tracker — up to 5 daily habits with a checkbox streak counter
+   - ⏱ Pomodoro timer — 25-minute focus timer with start/pause/reset and alert sound
+   - 📰 RSS reader — latest headlines from a custom RSS feed URL
+   - 💰 Currency converter — convert between two currencies using a free exchange rate API
+   - 🎯 Goal of the week — a single pinned text goal that resets every Monday
+   - 🌅 Countdown timer — days remaining to a custom date the user sets
 5. The dashboard layout should save to Supabase so it persists between sessions
 6. A logout button
 
@@ -1413,6 +1378,49 @@ Store credentials in a .env file. Add clear comments throughout. I'm a beginner 
     </div>
   </div>
 
+  <!-- 5. CSS & Layout -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🎨</span>
+      <span class="acc-title">CSS & Layout Fundamentals — How to Control How Things Look</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">You don't need to learn all of CSS. You need to understand the mental model so you can describe visual problems clearly to Claude Code — and understand why it makes the changes it does.</p>
+      <div class="step-list" style="margin-top:12px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Everything is a box</div>
+            <div class="step-desc">Every element on a webpage — a button, a paragraph, an image — is a rectangular box. CSS controls the size of the box (<code>width</code>, <code>height</code>), the space inside it (<code>padding</code>), the space outside it (<code>margin</code>), and its border (<code>border</code>). Understanding this one concept explains 60% of layout behaviour.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Flexbox: the layout tool you'll use most</div>
+            <div class="step-desc">Adding <code>display: flex</code> to a container puts its children in a row. <code>justify-content: center</code> centers them horizontally. <code>align-items: center</code> centers them vertically. <code>flex-direction: column</code> stacks them vertically. That's 80% of what flexbox does — and 80% of what you'll need.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Describing visual problems to Claude Code</div>
+            <div class="step-desc">Don't say "fix the layout". Say: <em>"The login button is touching the top of the input field — I want 16px of space between them."</em> Or: <em>"The card is 100% width on mobile — it should be narrower with some margin on the sides."</em> Specific, visual, measurable descriptions get better results.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Use the browser inspector to investigate</div>
+            <div class="step-desc">In browser dev tools (F12), hover over any element to see its box, padding, margin, and CSS properties. Right-click any element on your page and choose <strong>Inspect</strong>. You can even edit CSS live in the browser to experiment before asking Claude Code to make the change permanently.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Step 3 — Deploy to Vercel -->
   <div class="accordion">
     <div class="accordion-header" onclick="toggle(this)">
       <span class="acc-icon">🚀</span>
@@ -1445,6 +1453,27 @@ Store credentials in a .env file. Add clear comments throughout. I'm a beginner 
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- 7. Testing Your App -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">✅</span>
+      <span class="acc-title">Testing Your App Before and After Shipping</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">Most bugs that reach users could have been caught with 15 minutes of systematic testing. Run this checklist both locally before deploying and again on the live URL after deploying.</p>
+      <ul class="plain-list" style="margin-top:12px;">
+        <li><strong>Happy path:</strong> Sign up as a new user → build a dashboard → log out → log back in → confirm dashboard saved</li>
+        <li><strong>Error states:</strong> Try to sign up with an already-used email. Try logging in with the wrong password. What does the user see?</li>
+        <li><strong>Mobile check:</strong> Open Chrome DevTools (F12), click the phone icon to toggle mobile view. Does the layout break at 375px (iPhone) width?</li>
+        <li><strong>Console check:</strong> Open the console (F12 → Console). Are there any red errors during normal use?</li>
+        <li><strong>Second browser:</strong> Open your app in an incognito/private window. This simulates a fresh user with no cookies or localStorage — a common source of bugs.</li>
+        <li><strong>Live URL test:</strong> After deploying, repeat the happy path on the real Vercel URL — environment variable issues often only surface in production.</li>
+        <li><strong>Ask Claude Code:</strong> <em>"Review this app and identify any obvious bugs, missing error states, or ways a user might break it."</em></li>
+      </ul>
     </div>
   </div>
 </section>

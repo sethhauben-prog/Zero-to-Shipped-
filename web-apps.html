@@ -1563,19 +1563,30 @@ git push</span></span>
               <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>11.</strong> Click <strong>Create</strong>. A popup shows your <strong>Client ID</strong> and <strong>Client Secret</strong> — copy both and keep them safe.</div>
             </div>
 
-            <div class="step-desc" style="margin-top:12px;"><strong>Part 2 — Enable Google in Supabase</strong></div>
+            <div class="step-desc" style="margin-top:8px;"><strong>Part 2 — Enable Google in Supabase</strong></div>
             <div class="step-list" style="margin-top:8px;border-left:3px solid var(--p3);padding-left:16px;">
               <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>1.</strong> In your Supabase dashboard go to <strong>Authentication → Providers</strong>. Find <strong>Google</strong> in the list and click it.</div>
               <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>2.</strong> Toggle <strong>Enable Sign in with Google</strong> on.</div>
               <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>3.</strong> Paste your <strong>Client ID</strong> and <strong>Client Secret</strong> from Part 1 into the fields provided. Click <strong>Save</strong>.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>4.</strong> Go to <strong>Authentication → URL Configuration</strong>. Set the <strong>Site URL</strong> to your exact Vercel URL — e.g. <code>https://dashboard-creator-seven.vercel.app</code>. No trailing slash.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>5.</strong> Under <strong>Redirect URLs</strong> click <strong>Add URL</strong> and add: <code>https://dashboard-creator-seven.vercel.app/**</code> (the <code>/**</code> wildcard covers all pages). Also add <code>http://localhost:5173/**</code> for local dev. Click <strong>Save</strong>.</div>
+            </div>
+            <div class="callout callout-warn" style="margin-top:10px;"><strong>Getting a 404 after Google login?</strong> This means the redirect URL isn't set correctly. Double-check that your exact Vercel URL with <code>/**</code> is in the Redirect URLs list in Supabase → Authentication → URL Configuration. Make sure there's no trailing slash on the Site URL.</div>
+
+            <div class="step-desc" style="margin-top:12px;"><strong>Part 3 — Fix the app name showing on the Google login screen</strong></div>
+            <div class="step-desc" style="margin-top:6px;">If Google shows your raw Supabase URL (e.g. <code>llmywaq...supabase.co</code>) instead of your app name on the sign-in screen, fix it here:</div>
+            <div class="step-list" style="margin-top:8px;border-left:3px solid var(--p3);padding-left:16px;">
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>1.</strong> Go to <strong>Google Cloud Console → Google Auth Platform → Branding</strong>.</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>2.</strong> Update <strong>App name</strong> to <code>Dashboard Creator</code> (or whatever you want users to see).</div>
+              <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted);line-height:1.8;"><strong>3.</strong> Optionally add a logo and your app's homepage URL. Click <strong>Save</strong>. Changes take a few minutes to appear.</div>
             </div>
 
-            <div class="step-desc" style="margin-top:12px;"><strong>Part 3 — Add the button to your app</strong></div>
+            <div class="step-desc" style="margin-top:12px;"><strong>Part 4 — Add the button to your app</strong></div>
             <div class="copyable-wrap" style="margin-top:8px;">
               <span class="code-block"><span class="code-str">"Add Google SSO to my Dashboard Creator app using Supabase Auth. Add a 'Continue with Google' button to both the sign up and login pages. When clicked it should open Google's login flow and redirect back to the dashboard on success. Keep the existing email/password option as well."</span></span>
             </div>
 
-            <div class="step-desc" style="margin-top:12px;"><strong>Part 4 — Add your live Vercel URL to Google</strong></div>
+            <div class="step-desc" style="margin-top:12px;"><strong>Part 5 — Add your live Vercel URL to Google</strong></div>
             <div class="step-desc" style="margin-top:6px;">After deploying, go back to <strong>Google Cloud Console → APIs & Services → Credentials</strong>, click your OAuth client, and add your live Vercel URL (e.g. <code>https://dashboard-creator.vercel.app</code>) to both <strong>Authorised JavaScript origins</strong> and <strong>Authorised redirect URIs</strong>. Then redeploy once more to pick up the change.</div>
 
             <div class="callout callout-tip" style="margin-top:12px;"><strong>Testing Google login:</strong> Google requires the app to be in "production" mode before external users can log in. In Google Cloud Console go to <strong>OAuth consent screen → Publishing status</strong> and click <strong>Publish App</strong>. This is free and instant for basic scopes.</div>

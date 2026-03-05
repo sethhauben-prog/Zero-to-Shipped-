@@ -321,15 +321,66 @@ body {
 }
 .accordion.open .accordion-body { display: block; }
 
-/* ─── STEPS ─── */
-.step-list { margin-top: 16px; }
+/* ─── STEP CHECKBOXES ─── */
 .step {
   display: flex;
   gap: 16px;
   padding: 16px 0;
   border-bottom: 1px solid var(--border);
+  position: relative;
+  transition: opacity 0.2s;
 }
 .step:last-child { border-bottom: none; }
+.step.done { opacity: 0.5; }
+.step.done .step-title { text-decoration: line-through; color: var(--text-dim); }
+.step-check {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  transition: all 0.15s;
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.step-check:hover { border-color: var(--p-color, var(--royal)); }
+.step.done .step-check {
+  background: var(--p-color, var(--royal));
+  border-color: var(--p-color, var(--royal));
+}
+.step-check-tick {
+  display: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+.step.done .step-check-tick { display: block; }
+
+/* ─── ACCORDION PROGRESS ─── */
+.acc-progress {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2px 9px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 4px;
+  transition: all 0.2s;
+}
+.acc-progress.all-done {
+  background: var(--p-color, var(--royal));
+  border-color: var(--p-color, var(--royal));
+  color: #fff;
+}
 .step-num {
   flex-shrink: 0;
   width: 28px; height: 28px;
@@ -1919,7 +1970,63 @@ function makeCopyBtn(getText) {
   return btn;
 }
 
-document.querySelectorAll('span.code-block').forEach(block => {
+// ── STEP CHECKBOXES ──
+const PAGE_KEY = 'webapp-progress';
+const savedProgress = JSON.parse(localStorage.getItem(PAGE_KEY) || '{}');
+
+function getStepId(stepEl) {
+  const accordion = stepEl.closest('.accordion');
+  const accTitle = accordion ? accordion.querySelector('.acc-title')?.textContent.trim() : 'unknown';
+  const stepNum = stepEl.querySelector('.step-num')?.textContent.trim() || '?';
+  return btoa(accTitle + '::' + stepNum).replace(/=/g, '');
+}
+
+function updateAccordionProgress(accordion) {
+  const steps = accordion.querySelectorAll('.step');
+  const done = accordion.querySelectorAll('.step.done').length;
+  const total = steps.length;
+  let badge = accordion.querySelector('.acc-progress');
+  if (!badge) return;
+  badge.textContent = done + '/' + total;
+  badge.classList.toggle('all-done', done === total);
+}
+
+document.querySelectorAll('.step').forEach(step => {
+  // Add checkbox
+  const check = document.createElement('div');
+  check.className = 'step-check';
+  check.innerHTML = '<span class="step-check-tick">✓</span>';
+  check.title = 'Mark complete';
+  step.appendChild(check);
+
+  // Restore saved state
+  const id = getStepId(step);
+  if (savedProgress[id]) step.classList.add('done');
+
+  check.addEventListener('click', e => {
+    e.stopPropagation();
+    step.classList.toggle('done');
+    savedProgress[id] = step.classList.contains('done');
+    localStorage.setItem(PAGE_KEY, JSON.stringify(savedProgress));
+    const accordion = step.closest('.accordion');
+    if (accordion) updateAccordionProgress(accordion);
+  });
+});
+
+// Add progress badges to all accordion headers that contain steps
+document.querySelectorAll('.accordion').forEach(accordion => {
+  const steps = accordion.querySelectorAll('.step');
+  if (steps.length === 0) return;
+  const header = accordion.querySelector('.accordion-header');
+  const chevron = header?.querySelector('.acc-chevron');
+  if (!header || !chevron) return;
+  const badge = document.createElement('span');
+  badge.className = 'acc-progress';
+  badge.textContent = '0/' + steps.length;
+  header.insertBefore(badge, chevron);
+  updateAccordionProgress(accordion);
+});
+
   const parent = block.parentElement;
   if (!parent.classList.contains('copyable-wrap')) {
     const wrap = document.createElement('div');

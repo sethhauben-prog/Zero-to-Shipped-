@@ -370,7 +370,8 @@ body {
   font-size: 12px;
   line-height: 1.7;
   color: #e0dfd8;
-  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-word;
   overflow-x: auto;
 }
 .code-str { color: #7dd3b0; }
@@ -823,7 +824,10 @@ Make everything work in a single self-contained HTML file with no external depen
   </div>
 
   <div class="callout callout-info">
-    <strong>Requires Claude Code.</strong> Claude Code is Anthropic's terminal tool that lives inside your project folder and can read files, run commands, and build full applications. It requires a Claude Pro subscription ($20/month) or API billing. <a href="#p1" style="color:var(--royal);font-weight:600;">Complete Project 1 first</a> — it covers everything you need to understand before this step.
+    <strong>Requires Claude Code.</strong> Claude Code is Anthropic's terminal tool that lives inside your project folder and can read files, run commands, and build full applications. <a href="#p1" style="color:var(--royal);font-weight:600;">Complete Project 1 first</a> — it covers everything you need to understand before this step.
+  </div>
+  <div class="callout callout-warn">
+    💳 <strong>Cost: ~$20/month.</strong> Claude Code requires either a Claude Pro subscription ($20/month at claude.ai) or Anthropic API credits. API billing charges per use — typically $5–15/month for active development. You can start with $5 of API credits to try it out before committing.
   </div>
 
   <div class="accordion">

@@ -326,28 +326,29 @@ body {
   display: flex;
   gap: 16px;
   padding: 16px 0;
+  padding-right: 36px;
   border-bottom: 1px solid var(--border);
   position: relative;
   transition: opacity 0.2s;
 }
 .step:last-child { border-bottom: none; }
-.step.done { opacity: 0.5; }
+.step.done { opacity: 0.55; }
 .step.done .step-title { text-decoration: line-through; color: var(--text-dim); }
 .step-check {
-  flex-shrink: 0;
-  width: 20px; height: 20px;
-  border-radius: 4px;
+  position: absolute;
+  top: 16px;
+  right: 0;
+  width: 22px; height: 22px;
+  border-radius: 5px;
   border: 2px solid var(--border);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 4px;
   transition: all 0.15s;
   background: var(--surface);
-  flex-shrink: 0;
 }
-.step-check:hover { border-color: var(--p-color, var(--royal)); }
+.step-check:hover { border-color: var(--p-color, var(--royal)); background: var(--surface2); }
 .step.done .step-check {
   background: var(--p-color, var(--royal));
   border-color: var(--p-color, var(--royal));
@@ -355,8 +356,8 @@ body {
 .step-check-tick {
   display: none;
   color: #fff;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
   line-height: 1;
 }
 .step.done .step-check-tick { display: block; }
@@ -1978,7 +1979,13 @@ function getStepId(stepEl) {
   const accordion = stepEl.closest('.accordion');
   const accTitle = accordion ? accordion.querySelector('.acc-title')?.textContent.trim() : 'unknown';
   const stepNum = stepEl.querySelector('.step-num')?.textContent.trim() || '?';
-  return btoa(accTitle + '::' + stepNum).replace(/=/g, '');
+  const str = accTitle + '::' + stepNum;
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return 'step_' + Math.abs(hash);
 }
 
 function updateAccordionProgress(accordion) {
@@ -2027,6 +2034,7 @@ document.querySelectorAll('.accordion').forEach(accordion => {
   updateAccordionProgress(accordion);
 });
 
+document.querySelectorAll('span.code-block').forEach(block => {
   const parent = block.parentElement;
   if (!parent.classList.contains('copyable-wrap')) {
     const wrap = document.createElement('div');

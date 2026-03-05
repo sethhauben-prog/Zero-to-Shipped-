@@ -2056,10 +2056,18 @@ Before coding, explain your plan for the webhook and how it connects Stripe to S
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <div class="step-title">Set up the webhook locally for testing</div>
-            <div class="copyable-wrap">
-              <span class="code-block"><span class="code-str">"How do I test the Stripe webhook locally before deploying? Walk me through using the Stripe CLI to forward webhook events to my local development server."</span></span>
+            <div class="step-title">Set up the webhook endpoint in Stripe</div>
+            <div class="step-desc">A webhook is how Stripe tells your app "the payment worked" — without it your app never knows when someone paid. Here's how to set it up in the Stripe Workbench:</div>
+            <div class="step-desc" style="margin-top:8px;"><strong>In the Stripe Sandbox (for local testing):</strong></div>
+            <div style="margin:8px 0 0 0;font-size:13px;color:var(--text-muted);line-height:1.8;">
+              <strong>1.</strong> In the left sidebar go to <strong>Developers → Workbench</strong>. Click the <strong>Webhooks</strong> tab at the top.<br>
+              <strong>2.</strong> Click <strong>+ Add destination</strong>.<br>
+              <strong>3.</strong> Select <strong>Webhook endpoint</strong> as the destination type.<br>
+              <strong>4.</strong> For the endpoint URL enter your local dev server URL + <code>/api/webhook</code> — e.g. <code>http://localhost:5173/api/webhook</code>. (You can update this to your live Vercel URL later.)<br>
+              <strong>5.</strong> Under <strong>Select events</strong> search for and select <code>checkout.session.completed</code>. This fires when a payment succeeds.<br>
+              <strong>6.</strong> Click <strong>Add destination</strong>. On the next screen Stripe shows your <strong>Signing secret</strong> starting with <code>whsec_</code> — copy it immediately. If you missed it, click into the webhook endpoint → scroll to <strong>Signing secret</strong> → click <strong>Reveal</strong> to show it again. Add it to your <code>.env</code> file as <code>STRIPE_WEBHOOK_SECRET</code>.
             </div>
+            <div class="callout callout-tip" style="margin-top:10px;">💡 <strong>Prefer testing locally?</strong> Ask Claude Code: <em>"How do I use the Stripe CLI to forward webhook events to my local dev server?"</em> — the Stripe CLI is the easiest way to test webhooks without deploying first.</div>
           </div>
         </div>
       </div>
@@ -2085,7 +2093,15 @@ Before coding, explain your plan for the webhook and how it connects Stripe to S
           <div class="step-num">2</div>
           <div class="step-content">
             <div class="step-title">Register your live webhook URL in Stripe</div>
-            <div class="step-desc">In Stripe dashboard, go to <strong>Developers → Webhooks → Add Endpoint</strong>. Enter your live Vercel URL + <code>/api/webhook</code>. Select the <code>checkout.session.completed</code> event. Copy the signing secret and add it to Vercel.</div>
+            <div class="step-desc">Once deployed to Vercel, add your live webhook endpoint so Stripe can notify your production app of payments:</div>
+            <div style="margin:8px 0 0 0;font-size:13px;color:var(--text-muted);line-height:1.8;">
+              <strong>1.</strong> Go to <strong>Developers → Workbench → Webhooks</strong> tab.<br>
+              <strong>2.</strong> Click <strong>+ Add destination → Webhook endpoint</strong>.<br>
+              <strong>3.</strong> Enter your Vercel URL + <code>/api/webhook</code> — e.g. <code>https://dashboard-creator-seven.vercel.app/api/webhook</code>.<br>
+              <strong>4.</strong> Select the event <code>checkout.session.completed</code>.<br>
+              <strong>5.</strong> Click <strong>Add destination</strong> and copy the new <code>whsec_</code> signing secret — add it to Vercel environment variables as <code>STRIPE_WEBHOOK_SECRET</code>.
+            </div>
+            <div class="callout callout-warn" style="margin-top:8px;"><strong>Note:</strong> Your local webhook secret and your live webhook secret are different — Stripe generates a new one for each endpoint. Make sure your Vercel environment variable uses the live endpoint's secret, not the local one.</div>
           </div>
         </div>
         <div class="step">

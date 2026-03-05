@@ -1463,7 +1463,19 @@ Store credentials in a .env file. Add clear comments throughout. I'm a beginner 
           <div class="step-num">2</div>
           <div class="step-content">
             <div class="step-title">Add environment variables in Vercel</div>
-            <div class="step-desc">Import your repo on <strong>vercel.com/new</strong>. Before clicking Deploy, go to <strong>Environment Variables</strong> and add your Supabase URL and anon key. These replace the .env file on the live server — never put real credentials in your code.</div>
+            <div class="step-desc">Import your repo on <strong>vercel.com/new</strong>. Before clicking Deploy, scroll down to the <strong>Environment Variables</strong> section. First, check what variable names Claude Code actually used in your <code>.env</code> file — open it in a text editor or run:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">cat .env</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">You'll see something like this — copy the exact key names shown, they must match exactly:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-comment"># Your .env will look something like this:</span>
+VITE_SUPABASE_URL=https://xxxx.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGc...</span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">In the Vercel <strong>Key</strong> field type the name exactly as it appears in your .env (e.g. <code>VITE_SUPABASE_URL</code>). In the <strong>Value</strong> field paste the value after the <code>=</code> sign. Click <strong>+ Add More</strong> and repeat for the second variable.</div>
+            <div class="callout callout-tip" style="margin-top:10px;">💡 <strong>Easiest way:</strong> Click <strong>Import .env</strong> at the bottom of the Environment Variables section and paste your entire <code>.env</code> file contents — Vercel parses both keys automatically with no typing required.</div>
+            <div class="callout callout-warn" style="margin-top:8px;"><strong>If you get an "invalid characters" error:</strong> Open your <code>.env</code> file and check for spaces, quotes, or special characters around the key name. Keys must be letters, numbers, and underscores only — no spaces, no quotes, no dashes.</div>
           </div>
         </div>
         <div class="step">

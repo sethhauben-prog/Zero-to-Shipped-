@@ -1965,26 +1965,52 @@ Then build the mobile version screen by screen, starting with auth."</span></spa
       <span class="acc-chevron">▾</span>
     </div>
     <div class="accordion-body">
-      <div class="step-list">
+
+      <div class="callout callout-info" style="margin-top:14px;">
+        <strong>Sandbox vs Live — when to use each:</strong><br><br>
+        <strong>Use Test Mode (Sandbox) when:</strong> you are still building, testing, or showing the app to yourself. No real money moves. Stripe gives you fake card numbers. You can create products, run checkouts, and fire webhooks — all completely free with no business verification required. <em>This is where you should be right now.</em><br><br>
+        <strong>Switch to Live Mode when:</strong> the app is fully working in test mode, you're ready to charge real users, and you have a real business or product to sell. Going live requires Stripe to verify your identity and bank account — this takes 1-2 days and requires a government ID and bank details.<br><br>
+        <strong>Rule of thumb:</strong> Build and test everything in sandbox first. Only activate live mode when you're ready to take your first real payment from a real customer.
+      </div>
+
+      <div class="step-list" style="margin-top:16px;">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-content">
             <div class="step-title">Create a free Stripe account</div>
-            <div class="step-desc">Go to <strong>stripe.com</strong> and sign up. You can test payments without a business account — Stripe provides test card numbers so no real money moves during development.</div>
+            <div class="step-desc">Go to <strong>stripe.com</strong> and sign up with your email. You don't need a business name or bank account to get started — Stripe lets you build and test everything before activating your account for live payments.</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-content">
-            <div class="step-title">Create a $1 product in Stripe</div>
-            <div class="step-desc">In your Stripe dashboard, go to <strong>Products → Add Product</strong>. Name it "Premium Dashboard Widget". Set the price to $1 one-time. Copy the <strong>Price ID</strong> — it looks like <code>price_abc123</code>. You'll need this in the next step.</div>
+            <div class="step-title">Make sure you're in Test Mode</div>
+            <div class="step-desc">In the top right of your Stripe dashboard you'll see a toggle that says <strong>Test mode</strong>. Make sure it is <strong>ON</strong> (it should be by default for new accounts). Everything you create in test mode — products, prices, customers — is completely separate from live mode and costs nothing.</div>
+            <div class="callout callout-warn" style="margin-top:8px;"><strong>Important:</strong> Your test mode API keys and live mode API keys are different. Always double-check which mode you're in before copying keys. Test keys start with <code>sk_test_</code> and <code>pk_test_</code>. Live keys start with <code>sk_live_</code> and <code>pk_live_</code>.</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <div class="step-title">Get your Stripe API keys</div>
-            <div class="step-desc">Go to <strong>Developers → API Keys</strong>. Copy your <strong>Publishable key</strong> and <strong>Secret key</strong>. Keep the secret key private — it goes in your .env file only, never in your code.</div>
+            <div class="step-title">Create a $1 product in Stripe (in Test Mode)</div>
+            <div class="step-desc">In the left sidebar go to <strong>Product Catalog</strong>. Click <strong>+ Add Product</strong> in the top right. Name it "Premium Dashboard Widget". Set the price to <strong>$1</strong> and the payment type to <strong>One time</strong>. Click <strong>Save Product</strong>.</div>
+            <div class="step-desc" style="margin-top:8px;"><strong>Finding the Price ID:</strong> After saving, you'll land on the product detail page. Scroll down to the <strong>Pricing</strong> section. You'll see your $1 price listed there — underneath it is a small grey code that starts with <code>price_</code> followed by a long string of letters and numbers (e.g. <code>price_1Abc123XYZ</code>). That is your Price ID. Click the copy icon next to it or highlight and copy it manually.</div>
+            <div class="callout callout-warn" style="margin-top:8px;"><strong>Note:</strong> In Stripe's sandbox (test mode) the navigation shows <strong>Product Catalog</strong> in the sidebar — not a standalone "Products" menu item. If you can't find it, look for it under the main left sidebar navigation.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Get your test API keys</div>
+            <div class="step-desc">Go to <strong>Developers → API Keys</strong>. Make sure you're still in Test Mode. Copy your <strong>Publishable key</strong> (<code>pk_test_...</code>) and <strong>Secret key</strong> (<code>sk_test_...</code>). The secret key goes in your <code>.env</code> file only — never in your code or GitHub.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-title">When you're ready to go live — activate your account</div>
+            <div class="step-desc">Once the payment flow works end-to-end in test mode, go to your Stripe dashboard and click <strong>Activate your account</strong>. Stripe will ask for your legal name, address, business type, and bank account details for payouts. This takes 1-2 days to verify. Once approved, toggle off Test Mode, copy your <strong>live keys</strong> (<code>pk_live_</code> and <code>sk_live_</code>), update your Vercel environment variables, and redeploy. Remember to recreate your product in live mode too — test products don't carry over.</div>
+            <div class="callout callout-tip" style="margin-top:8px;">💡 You can run your app in live mode and test mode at the same time on different environments — use test keys on <code>localhost</code> and live keys on your Vercel production URL.</div>
           </div>
         </div>
       </div>

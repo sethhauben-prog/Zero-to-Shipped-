@@ -1756,164 +1756,6 @@ git push</span></span>
       <div class="project-level-tag">Pro</div>
     </div>
     <div class="project-info">
-      <div class="project-title">Mobile App</div>
-      <div class="project-desc">Convert your Dashboard Creator into a mobile app that users can download and install on their iPhone or Android. Your users get a native app experience — yours to build, yours to distribute.</div>
-      <div class="tool-chips">
-        <span class="chip highlight">Claude Code</span>
-        <span class="chip highlight">React Native</span>
-        <span class="chip highlight">Expo</span>
-        <span class="chip">iOS</span>
-        <span class="chip">Android</span>
-        <span class="chip">App Store</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="skill-unlock">
-    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
-    <div class="skill-tags">
-      <div class="skill-tag">React Native</div>
-      <div class="skill-tag">Expo setup</div>
-      <div class="skill-tag">Mobile UI patterns</div>
-      <div class="skill-tag">App testing on device</div>
-      <div class="skill-tag">iOS & Android builds</div>
-      <div class="skill-tag">App Store prep</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggle(this)">
-      <span class="acc-icon">🎯</span>
-      <span class="acc-title">What You're Building</span>
-      <span class="acc-chevron">▾</span>
-    </div>
-    <div class="accordion-body">
-      <div class="callout callout-info" style="margin-top:14px;"><strong>Same app, native experience.</strong> Your existing Dashboard Creator logic and Supabase database stay exactly the same. You're converting the frontend into React Native so it runs natively on phones — not just in a mobile browser.</div>
-      <ul class="plain-list" style="margin-top:12px;">
-        <li>Users sign up and log in on their phone</li>
-        <li>Dashboard builder adapted for touch and mobile screen sizes</li>
-        <li>Their data stays in the same Supabase database as the web app</li>
-        <li>Testable on your phone immediately using the Expo Go app</li>
-        <li>Ready to submit to the App Store and Google Play</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggle(this)">
-      <span class="acc-icon">⚙️</span>
-      <span class="acc-title">Step 1 — Set Up Expo</span>
-      <span class="acc-chevron">▾</span>
-    </div>
-    <div class="accordion-body">
-      <div class="step-list">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <div class="step-title">Install Expo and create a new project</div>
-            <div class="copyable-wrap">
-              <span class="code-block"><span class="code-cmd">npx create-expo-app dashboard-creator-mobile
-cd dashboard-creator-mobile
-claude</span></span>
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-title">Install Expo Go on your phone</div>
-            <div class="step-desc">Search for <strong>Expo Go</strong> in the App Store or Google Play and install it. This lets you see your app live on your phone as you build it — no App Store submission required during development.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggle(this)">
-      <span class="acc-icon">🏗️</span>
-      <span class="acc-title">Step 2 — Convert Your App to Mobile</span>
-      <span class="acc-chevron">▾</span>
-    </div>
-    <div class="accordion-body">
-      <div class="step-list">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <div class="step-title">Ask Claude Code to convert the app</div>
-            <div class="copyable-wrap">
-              <span class="code-block"><span class="code-str">"I have a React web app called Dashboard Creator that uses Supabase for auth and data. I want to convert it into a React Native / Expo mobile app. Before building anything:
-
-1. Explain what changes when going from React web to React Native
-2. List which parts of my existing code I can reuse vs what needs to be rewritten
-3. Give me a plan for converting each screen (landing, login, signup, dashboard builder)
-
-Then build the mobile version screen by screen, starting with auth."</span></span>
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-title">Preview on your phone in real time</div>
-            <div class="copyable-wrap">
-              <span class="code-block"><span class="code-cmd">npx expo start</span></span>
-            </div>
-            <div class="step-desc" style="margin-top:8px;">A QR code appears in your terminal. Open Expo Go on your phone and scan it. Your app appears on your phone instantly — it updates live every time Claude Code makes a change.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <div class="step-title">Refine for mobile experience</div>
-            <div class="copyable-wrap">
-              <span class="code-block"><span class="code-str">"Review the app on mobile and identify anything that doesn't feel native — buttons that are too small to tap, text that's too small to read, layouts that don't use the screen well. Fix each issue and explain what you changed."</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggle(this)">
-      <span class="acc-icon">🚀</span>
-      <span class="acc-title">Step 3 — Build for App Store Submission</span>
-      <span class="acc-chevron">▾</span>
-    </div>
-    <div class="accordion-body">
-      <div class="step-list">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <div class="step-title">Create an Expo account and configure your app</div>
-            <div class="step-desc">Sign up at <strong>expo.dev</strong>. Then ask Claude Code to update your <code>app.json</code> with your app name, bundle ID, icons, and splash screen.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-title">Build the app for submission</div>
-            <div class="copyable-wrap">
-              <span class="code-block"><span class="code-str">"Walk me through building this app for both iOS and Android submission using EAS Build. I want to submit to both the App Store and Google Play. Explain each step — I haven't done this before."</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     PROJECT 6 — NINJA
-════════════════════════════════════════════════ -->
-<section class="project-section p6" id="p6">
-  <div class="project-header">
-    <div class="project-badge">
-      <div class="project-num">6</div>
-      <div class="project-level-tag">Ninja</div>
-    </div>
-    <div class="project-info">
       <div class="project-title">Monetization — Charge for Premium Features</div>
       <div class="project-desc">Add real payment processing to your Dashboard Creator. Users pay $1 to unlock a premium dashboard section — you collect the money, Stripe handles everything else. Your first dollar from software you built yourself.</div>
       <div class="tool-chips">
@@ -2116,6 +1958,291 @@ Before coding, explain your plan for the webhook and how it connects Stripe to S
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT 6 — NINJA
+════════════════════════════════════════════════ -->
+<section class="project-section p6" id="p6">
+  <div class="project-header">
+    <div class="project-badge">
+      <div class="project-num">6</div>
+      <div class="project-level-tag">Ninja</div>
+    </div>
+    <div class="project-info">
+      <div class="project-title">Mobile App</div>
+      <div class="project-desc">Convert your Dashboard Creator into a mobile app that users can download and install on their iPhone or Android. Your users get a native app experience — yours to build, yours to distribute.</div>
+      <div class="tool-chips">
+        <span class="chip highlight">Claude Code</span>
+        <span class="chip highlight">React Native</span>
+        <span class="chip highlight">Expo</span>
+        <span class="chip">iOS</span>
+        <span class="chip">Android</span>
+        <span class="chip">App Store</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-unlock">
+    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
+    <div class="skill-tags">
+      <div class="skill-tag">React Native</div>
+      <div class="skill-tag">Expo setup</div>
+      <div class="skill-tag">Mobile UI patterns</div>
+      <div class="skill-tag">App testing on device</div>
+      <div class="skill-tag">iOS & Android builds</div>
+      <div class="skill-tag">App Store prep</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🎯</span>
+      <span class="acc-title">What You're Building</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="callout callout-info" style="margin-top:14px;"><strong>Same app, native experience.</strong> Your existing Dashboard Creator logic and Supabase database stay exactly the same. You're converting the frontend into React Native so it runs natively on phones — not just in a mobile browser.</div>
+      <ul class="plain-list" style="margin-top:12px;">
+        <li>Users sign up and log in on their phone</li>
+        <li>Dashboard builder adapted for touch and mobile screen sizes</li>
+        <li>Their data stays in the same Supabase database as the web app</li>
+        <li>Testable on your phone immediately using the Expo Go app</li>
+        <li>Ready to submit to the App Store and Google Play</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">⚙️</span>
+      <span class="acc-title">Step 1 — Set Up Expo</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;"><strong>What is Expo?</strong> Expo is a free framework that lets you build real iOS and Android apps using React — the same language you already used to build your web app. Without Expo, building a mobile app would require you to install Xcode (Mac only, 12GB+), Android Studio, and deal with complex native build tools. Expo handles all of that for you. You write JavaScript, Expo compiles it into a real native app.</p>
+      <p style="font-size:13px;color:var(--text-muted);margin-top:10px;line-height:1.8;"><strong>What is Expo Go?</strong> Expo Go is the companion app you install on your phone. During development, instead of submitting your app to the App Store (which takes days), you just scan a QR code and your app opens instantly on your real phone. Every time you save a change, the phone updates live. It's the fastest way to build and test a mobile app.</p>
+      <p style="font-size:13px;color:var(--text-muted);margin-top:10px;line-height:1.8;"><strong>How it connects to your existing app:</strong> Your Dashboard Creator web app uses React and Supabase. Expo uses React Native — a close cousin of React where <code>&lt;div&gt;</code> becomes <code>&lt;View&gt;</code> and <code>&lt;p&gt;</code> becomes <code>&lt;Text&gt;</code>, but the logic, Supabase calls, and state management all carry over. Claude Code handles the conversion.</p>
+
+      <div class="step-list" style="margin-top:16px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Check that Node.js is installed</div>
+            <div class="step-desc">Expo requires Node.js. Check if you have it by running:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">node --version</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">If you see a version number (e.g. <code>v20.11.0</code>) you're good. If you get "command not found", go to <strong>nodejs.org</strong>, download the LTS version, and install it. Restart your terminal after installing.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Create a new Expo project on your computer</div>
+            <div class="step-desc">In your terminal, navigate to your projects folder and run:</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">npx create-expo-app dashboard-creator-mobile
+cd dashboard-creator-mobile
+claude</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;"><code>npx create-expo-app</code> downloads and sets up everything Expo needs — you don't need to install Expo globally first, <code>npx</code> handles it. This creates a new folder called <code>dashboard-creator-mobile</code> with all the files needed to build a React Native app. The <code>claude</code> command then opens Claude Code inside that folder.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Install Expo Go on your phone</div>
+            <div class="step-desc">On your phone, search for <strong>Expo Go</strong> in the App Store (iPhone) or Google Play (Android) and install it. This is free. You'll use it to preview your app live during development — no App Store submission required until you're ready to go public.</div>
+            <div class="callout callout-tip" style="margin-top:8px;">💡 Make sure your phone and computer are on the <strong>same WiFi network</strong> — Expo Go connects to your computer over the local network to stream the app to your phone.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🏗️</span>
+      <span class="acc-title">Step 2 — Convert Your App to Mobile</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Ask Claude Code to convert the app</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"I have a React web app called Dashboard Creator that uses Supabase for auth and data. I want to convert it into a React Native / Expo mobile app. Before building anything:
+
+1. Explain what changes when going from React web to React Native
+2. List which parts of my existing code I can reuse vs what needs to be rewritten
+3. Give me a plan for converting each screen (landing, login, signup, dashboard builder)
+
+Then build the mobile version screen by screen, starting with auth."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Preview on your phone in real time</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-cmd">npx expo start</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">A QR code appears in your terminal. Open Expo Go on your phone and scan it. Your app appears on your phone instantly — it updates live every time Claude Code makes a change.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Refine for mobile experience</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Review the app on mobile and identify anything that doesn't feel native — buttons that are too small to tap, text that's too small to read, layouts that don't use the screen well. Fix each issue and explain what you changed."</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">📋</span>
+      <span class="acc-title">Step 3 — Steps Required to Go Live in the App Store and Google Play</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">Before you can submit your app to either store, you need accounts, configurations, and assets in place. Neither store is instant — Apple takes 1-3 days to review, Google takes a few hours to a day. Here's everything you need to prepare.</p>
+
+      <div class="step-list" style="margin-top:14px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create an Apple Developer account ($99/year)</div>
+            <div class="step-desc">Go to <strong>developer.apple.com/programs</strong> and enroll. You'll need an Apple ID, a credit card, and to verify your identity. This annual fee is required to publish any iOS app — there's no free tier. Once enrolled, you get access to App Store Connect where you manage your submissions.</div>
+            <div class="callout callout-warn" style="margin-top:8px;"><strong>Note:</strong> You can only build and submit iOS apps from a <strong>Mac</strong>. If you're on Windows, you'll need to use EAS Build (Expo's cloud build service) to compile the iOS version — Expo handles this for you in the cloud so you don't need a Mac locally.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Create a Google Play Developer account ($25 one-time)</div>
+            <div class="step-desc">Go to <strong>play.google.com/console</strong> and sign up. The $25 fee is a one-time payment — you never pay again. You'll need to verify your identity and provide a developer name that will show publicly on your app's store listing. Google Play review is much faster than Apple and generally less strict.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Create an Expo account and set up EAS</div>
+            <div class="step-desc">Sign up free at <strong>expo.dev</strong>. EAS (Expo Application Services) is Expo's cloud build service — it compiles your app into the binary files (.ipa for iOS, .aab for Android) that the stores require. Without EAS you'd need to set up Xcode and Android Studio yourself.</div>
+            <div class="copyable-wrap" style="margin-top:8px;">
+              <span class="code-block"><span class="code-cmd">npm install -g eas-cli
+eas login
+eas build:configure</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Prepare your app identity in app.json</div>
+            <div class="step-desc">Your <code>app.json</code> file tells the stores who your app is. Three fields are critical and must be set before building:</div>
+            <div style="margin:8px 0 0 0;font-size:13px;color:var(--text-muted);line-height:1.8;">
+              <strong>name</strong> — the display name users see (e.g. "Dashboard Creator")<br>
+              <strong>slug</strong> — a URL-safe version (e.g. "dashboard-creator")<br>
+              <strong>iOS bundleIdentifier</strong> — a unique reverse-domain ID (e.g. <code>com.yourname.dashboardcreator</code>)<br>
+              <strong>Android package</strong> — same format (e.g. <code>com.yourname.dashboardcreator</code>)
+            </div>
+            <div class="copyable-wrap" style="margin-top:8px;">
+              <span class="code-block"><span class="code-str">"Update my app.json with the correct name, slug, iOS bundleIdentifier, and Android package name for an app called Dashboard Creator. Use com.yourname.dashboardcreator as the bundle ID format."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-title">Create your app icon and splash screen</div>
+            <div class="step-desc">Both stores require a 1024×1024px app icon with no transparency (PNG). You also need a splash screen — the image shown while the app loads. Ask Claude Code to help:</div>
+            <div class="copyable-wrap" style="margin-top:8px;">
+              <span class="code-block"><span class="code-str">"Set up my app icon and splash screen for Expo. I have a 1024x1024 PNG icon file at [path]. Configure app.json to use it and generate all the required sizes for iOS and Android automatically using expo-image-assets."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <div class="step-title">Write your store listing</div>
+            <div class="step-desc">Both stores need a short description (80 chars), full description (up to 4000 chars), screenshots from real devices, and a privacy policy URL. You can't submit without all of these. Ask Claude Code to draft the copy:</div>
+            <div class="copyable-wrap" style="margin-top:8px;">
+              <span class="code-block"><span class="code-str">"Write App Store and Google Play listing copy for Dashboard Creator — a personal dashboard app where users log in, build a custom dashboard from 13 widgets, and save it to the cloud. Include a short description under 80 characters, a full description under 4000 characters, and 5 keyword suggestions."</span></span>
+            </div>
+            <div class="callout callout-warn" style="margin-top:8px;"><strong>Privacy policy required:</strong> Both stores require a privacy policy URL before submission. Host a simple one on your Vercel site at <code>/privacy</code>. Ask Claude Code: <em>"Generate a basic privacy policy for Dashboard Creator and add it as a page at /privacy on my Vercel app."</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🏗️</span>
+      <span class="acc-title">Step 4 — Build and Submit for Both Stores</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">Once your accounts are set up and your app is ready, EAS Build compiles everything in the cloud and produces the files each store needs. You don't need Xcode or Android Studio installed locally.</p>
+
+      <div class="step-list" style="margin-top:14px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Build for iOS (App Store)</div>
+            <div class="step-desc">This compiles your app into a <code>.ipa</code> file and submits it to Apple's TestFlight (a staging area) automatically. EAS handles code signing and provisioning profiles — the most painful part of iOS development.</div>
+            <div class="copyable-wrap" style="margin-top:8px;">
+              <span class="code-block"><span class="code-cmd">eas build --platform ios --profile production
+eas submit --platform ios</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">The build takes 10-20 minutes in the cloud. You'll get a link to track progress. Once submitted, Apple reviews it — typically 1-3 days for a first submission.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Build for Android (Google Play)</div>
+            <div class="step-desc">This compiles your app into an <code>.aab</code> (Android App Bundle) and submits it to Google Play's internal testing track. Google's review is typically a few hours to a day.</div>
+            <div class="copyable-wrap" style="margin-top:8px;">
+              <span class="code-block"><span class="code-cmd">eas build --platform android --profile production
+eas submit --platform android</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Build both at the same time</div>
+            <div class="step-desc">If you want to kick off both builds simultaneously and save time:</div>
+            <div class="copyable-wrap" style="margin-top:8px;">
+              <span class="code-block"><span class="code-cmd">eas build --platform all --profile production</span></span>
+            </div>
+            <div class="step-desc" style="margin-top:8px;">Both builds run in parallel in the cloud. You get two download links when they're done — one <code>.ipa</code> for Apple, one <code>.aab</code> for Google.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Let Claude Code guide you through the full submission</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"Walk me through submitting Dashboard Creator to both the App Store and Google Play using EAS Build and EAS Submit. I have an Apple Developer account and a Google Play Console account. Walk me through each step — credentials, build profiles, signing, and submission. I haven't done this before."</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 </main>
 

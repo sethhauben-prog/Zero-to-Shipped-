@@ -648,60 +648,6 @@ footer .footer-title {
     </div>
   </div>
 
-  <div class="build-ideas">
-    <div class="build-ideas-title">💡 What you can build with these free tools</div>
-    <div class="idea-grid">
-      <div class="idea-item">Personal dashboard</div>
-      <div class="idea-item">Portfolio site</div>
-      <div class="idea-item">Business landing page</div>
-      <div class="idea-item">To-do / task tracker</div>
-      <div class="idea-item">Link in bio page</div>
-      <div class="idea-item">Event countdown timer</div>
-      <div class="idea-item">Recipe collection</div>
-      <div class="idea-item">Simple quiz or poll</div>
-      <div class="idea-item">Price comparison tool</div>
-      <div class="idea-item">Resume / CV page</div>
-      <div class="idea-item">Newsletter signup page</div>
-      <div class="idea-item">Product waitlist page</div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <div class="accordion-header" onclick="toggle(this)">
-      <span class="acc-icon">💡</span>
-      <span class="acc-title">Finding Your Project Idea — A Framework for Picking What to Build</span>
-      <span class="acc-chevron">▾</span>
-    </div>
-    <div class="accordion-body">
-      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">The best first project is one you actually want to exist. Here's a proven framework for finding it:</p>
-      <div class="step-list" style="margin-top:12px;">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <div class="step-title">Find a problem you have personally</div>
-            <div class="step-desc">What do you do manually that feels annoying or repetitive? What do you Google every week? What spreadsheet do you maintain that wishes it were a proper app? Build the tool that solves your own problem first — you understand the requirements perfectly because you are the user.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-title">Stay in scope for your current skill level</div>
-            <div class="step-desc">For Project 1, you want something that fits in a single page, doesn't need user accounts, and doesn't talk to external services. Good scope: a habit tracker, a reference page for your hobby, a tool to calculate something you calculate often. Bad scope for Project 1: an e-commerce store, a social network, or anything that starts with "like Airbnb but for..."</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <div class="step-title">Use Claude to validate your idea before building</div>
-            <div class="copyable-wrap">
-              <span class="code-block"><span class="code-str">"I want to build [your idea]. I'm a complete beginner and this is my first project. Is this a good scope for a single-page app with no database? What are the core features I should include and what should I leave out to keep it simple? What might be harder than I expect?"</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="skill-unlock">
     <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
     <div class="skill-tags">
@@ -723,6 +669,17 @@ footer .footer-title {
     <div class="accordion-body">
       <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">A personal dashboard web page that shows a live clock, a to-do list that saves between visits, a random motivational quote, and links to your most-used sites. Everything lives in one HTML file — Claude builds it, you ship it.</p>
       <div class="callout callout-tip" style="margin-top:14px;"><strong>Why this project?</strong> A dashboard touches every core concept — displaying information, saving data, handling user interaction — without needing a server or database. It's the perfect first project.</div>
+
+      <div style="margin-top:16px;background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(139,92,246,0.08));border:1.5px solid rgba(99,102,241,0.25);border-radius:12px;padding:16px 18px;">
+        <div style="font-size:13px;font-weight:700;color:var(--royal);margin-bottom:8px;">🛠️ Want to build your own project instead?</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0 0 10px 0;">You don't have to build the dashboard — if you already have an idea you're excited about, build that instead. The steps are identical: Claude builds it, you put it on GitHub, Vercel makes it live.</p>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0 0 10px 0;"><strong>What works well for a first project:</strong> anything that fits in a single HTML file with no user accounts, no payments, and no external APIs. Good examples: a habit tracker, a recipe collection, a price calculator, a reference page for your hobby, a personal bio page, or a countdown timer to something you're excited about.</p>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0 0 10px 0;"><strong>What to avoid for now:</strong> anything that needs users to log in, store data in a database, or connect to an external service. That's Project 3 territory — get one project live first, then level up.</p>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0;">Not sure if your idea fits? Paste this into Claude first:</p>
+        <div class="copyable-wrap" style="margin-top:8px;">
+          <span class="code-block"><span class="code-str">"I want to build [your idea] as my very first web project. I'm a complete beginner. Can this be built as a single HTML file with no database or login system? What should I include to keep it simple, and what should I leave out?"</span></span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -851,6 +808,60 @@ Make everything work in a single self-contained HTML file with no external depen
       </div>
     </div>
   </div>
+  <div class="build-ideas">
+    <div class="build-ideas-title">💡 What you can build with these free tools</div>
+    <div class="idea-grid">
+      <div class="idea-item">Personal dashboard</div>
+      <div class="idea-item">Portfolio site</div>
+      <div class="idea-item">Business landing page</div>
+      <div class="idea-item">To-do / task tracker</div>
+      <div class="idea-item">Link in bio page</div>
+      <div class="idea-item">Event countdown timer</div>
+      <div class="idea-item">Recipe collection</div>
+      <div class="idea-item">Simple quiz or poll</div>
+      <div class="idea-item">Price comparison tool</div>
+      <div class="idea-item">Resume / CV page</div>
+      <div class="idea-item">Newsletter signup page</div>
+      <div class="idea-item">Product waitlist page</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">💡</span>
+      <span class="acc-title">Finding Your Project Idea — A Framework for Picking What to Build</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">The best first project is one you actually want to exist. Here's a proven framework for finding it:</p>
+      <div class="step-list" style="margin-top:12px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Find a problem you have personally</div>
+            <div class="step-desc">What do you do manually that feels annoying or repetitive? What do you Google every week? What spreadsheet do you maintain that wishes it were a proper app? Build the tool that solves your own problem first — you understand the requirements perfectly because you are the user.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Stay in scope for your current skill level</div>
+            <div class="step-desc">For Project 1, you want something that fits in a single page, doesn't need user accounts, and doesn't talk to external services. Good scope: a habit tracker, a reference page for your hobby, a tool to calculate something you calculate often. Bad scope for Project 1: an e-commerce store, a social network, or anything that starts with "like Airbnb but for..."</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Use Claude to validate your idea before building</div>
+            <div class="copyable-wrap">
+              <span class="code-block"><span class="code-str">"I want to build [your idea]. I'm a complete beginner and this is my first project. Is this a good scope for a single-page app with no database? What are the core features I should include and what should I leave out to keep it simple? What might be harder than I expect?"</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ═══════════════════════════════════════════════
@@ -882,6 +893,22 @@ Make everything work in a single self-contained HTML file with no external depen
     💳 <strong>Cost: ~$20/month.</strong> Claude Code requires either a Claude Pro subscription ($20/month at claude.ai) or Anthropic API credits. API billing charges per use — typically $5–15/month for active development. You can start with $5 of API credits to try it out before committing.
   </div>
 
+  <div class="skill-unlock">
+    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
+    <div class="skill-tags">
+      <div class="skill-tag">Terminal basics</div>
+      <div class="skill-tag">Claude Code setup</div>
+      <div class="skill-tag">File management</div>
+      <div class="skill-tag">Git from terminal</div>
+      <div class="skill-tag">CLAUDE.md</div>
+      <div class="skill-tag">Plan Mode</div>
+      <div class="skill-tag">Error handling</div>
+      <div class="skill-tag">Secrets & .env files</div>
+      <div class="skill-tag">Debugging framework</div>
+      <div class="skill-tag">Git as undo button</div>
+    </div>
+  </div>
+
   <div class="accordion">
     <div class="accordion-header" onclick="toggle(this)">
       <span class="acc-icon">🖥️</span>
@@ -890,6 +917,14 @@ Make everything work in a single self-contained HTML file with no external depen
     </div>
     <div class="accordion-body">
       <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">The terminal is just a text-based way to control your computer. Instead of clicking icons, you type commands. That's it. Here are the only commands you'll use in this course:</p>
+
+      <div style="margin-top:14px;margin-bottom:16px;background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(139,92,246,0.08));border:1.5px solid rgba(99,102,241,0.25);border-radius:12px;padding:16px 18px;">
+        <div style="font-size:13px;font-weight:700;color:var(--royal);margin-bottom:10px;">🖥️ What the terminal actually is — and why developers use it</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0 0 10px 0;">Every graphical interface you use — Finder, File Explorer, VS Code, your browser — is just a visual layer sitting on top of the same underlying operating system. The terminal skips that layer entirely and talks directly to the OS. It's not more powerful because it looks scary. It's more powerful because it's more direct.</p>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0 0 10px 0;"><strong>Why developers use it:</strong> Most developer tools — like Claude Code, Node.js, Git, and npm — are command-line programs. They were built to be used from the terminal because it's faster, scriptable, and works the same on every computer. When you type <code>claude</code> in the terminal, you're launching Claude Code. When you type <code>git push</code>, you're sending your code to GitHub. The terminal is the control center everything connects through.</p>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0 0 10px 0;"><strong>Your mental model:</strong> Think of your computer as a city. The graphical interface (Finder, etc.) is the tourist map — simplified, visual, easy to navigate. The terminal is the street grid underneath — more direct, more precise, and where the real infrastructure lives. You don't need to memorize the whole grid. You just need to know the streets you'll use.</p>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0;"><strong>What the terminal can't do:</strong> It won't delete your whole computer if you type the wrong thing (mostly). It can't do anything your user account doesn't have permission for. And if something goes wrong, Claude Code can help you fix it — just paste the error message and ask what happened.</p>
+      </div>
       <div class="step-list" style="margin-top:12px;">
         <div class="step">
           <div class="step-num" style="font-size:10px;width:32px;height:32px;">pwd</div>
@@ -925,19 +960,87 @@ Make everything work in a single self-contained HTML file with no external depen
     </div>
   </div>
 
-  <div class="skill-unlock">
-    <div class="skill-unlock-title">🔓 Skills you'll unlock</div>
-    <div class="skill-tags">
-      <div class="skill-tag">Terminal basics</div>
-      <div class="skill-tag">Claude Code setup</div>
-      <div class="skill-tag">File management</div>
-      <div class="skill-tag">Git from terminal</div>
-      <div class="skill-tag">CLAUDE.md</div>
-      <div class="skill-tag">Plan Mode</div>
-      <div class="skill-tag">Error handling</div>
-      <div class="skill-tag">Secrets & .env files</div>
-      <div class="skill-tag">Debugging framework</div>
-      <div class="skill-tag">Git as undo button</div>
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggle(this)">
+      <span class="acc-icon">🤖</span>
+      <span class="acc-title">Claude Code Crash Course — How to Work With It</span>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">Claude Code is not a chatbot. It's an AI agent that lives inside your project folder and can actually do things — read your files, write code, run commands, install packages, and push to GitHub. Understanding how it works makes you dramatically more effective with it.</p>
+
+      <div class="step-list" style="margin-top:14px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">How you launch it</div>
+            <div class="step-desc">You start Claude Code by typing <code>claude</code> in your terminal while inside your project folder. It reads everything in that folder automatically — your files, your folder structure, your CLAUDE.md — so it already has context before you say a word. You don't need to paste your code in. It can see it.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">How to give it instructions</div>
+            <div class="step-desc">Describe what you want in plain English. You don't need to know how to code — you need to know what you want. Be specific about the outcome, not the method. Instead of "write a function that does X", say "when the user clicks the Save button, save the form data and show a green confirmation message." Claude Code figures out the how.</div>
+            <div class="callout callout-tip" style="margin-top:8px;">💡 <strong>The more context the better.</strong> Tell it what the app is for, who uses it, and what you're trying to achieve. It performs significantly better when it understands the goal, not just the task.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Plan Mode — use it before big changes</div>
+            <div class="step-desc">Before Claude Code writes any code, you can ask it to plan first. Type <code>/plan</code> or say "before you build anything, give me a plan." It will describe what it intends to do step by step. Review the plan, approve it, then let it build. This prevents it from going down the wrong path for 10 minutes before you realise it misunderstood you.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">CLAUDE.md — your project's memory</div>
+            <div class="step-desc">Claude Code reads a file called <code>CLAUDE.md</code> in your project folder every time it starts. This is where you put permanent context: what the app is, what tech stack it uses, what variable names you've chosen, what not to change. Without it, Claude Code starts fresh every session. With it, it already knows your project. Create and update this file throughout your build.</div>
+            <div class="copyable-wrap" style="margin-top:8px;">
+              <span class="code-block"><span class="code-str">"Create a CLAUDE.md file for this project. Include: what the app does, the tech stack, key file names, environment variable names, and any decisions we've made that you should remember."</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-title">When something breaks — paste the error</div>
+            <div class="step-desc">When Claude Code makes a change and something breaks, don't try to fix it yourself. Copy the exact error message from your terminal or browser console and paste it back into Claude Code. Say: <em>"This error appeared after your last change. Fix it."</em> Exact error text is more useful than a description of the error.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <div class="step-title">Git is your undo button</div>
+            <div class="step-desc">Before any big change, commit your working code to Git. If Claude Code breaks something badly, you can roll back to the last good state instead of trying to unpick what went wrong. Make this a habit: working → commit → ask for big change → test → commit again.</div>
+            <div class="copyable-wrap" style="margin-top:8px;">
+              <span class="code-block"><span class="code-cmd">git add .
+git commit -m "working state before [change]"</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">7</div>
+          <div class="step-content">
+            <div class="step-title">How to exit Claude Code</div>
+            <div class="step-desc">Press <code>Ctrl+C</code> to stop whatever Claude Code is doing. Type <code>exit</code> or press <code>Ctrl+D</code> to close the session entirely. Your files are always saved — exiting Claude Code doesn't undo anything it already wrote.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <span class="acc-chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">You're rebuilding your Project 1 dashboard — but this time using Claude Code in the terminal instead of the Claude chat interface. The end result looks the same, but how you get there is completely different and far more powerful.</p>
+      <p style="font-size:13px;color:var(--text-muted);margin-top:10px;line-height:1.8;">Claude Code lives inside your project folder. It can read and write files directly, run terminal commands, install packages, push to GitHub, and iterate on your code without you having to copy and paste anything. You describe what you want, it does the work, you watch it happen in real time.</p>
+      <div class="callout callout-tip" style="margin-top:14px;"><strong>Why rebuild something you already built?</strong> Because the point of Project 2 isn't the dashboard — it's the workflow. You're learning the development loop that every project from here forward uses: open terminal → run Claude Code → describe what you want → test it → commit to GitHub → push to Vercel. Once this loop feels natural, you can build anything.</div>
+      <div style="margin-top:14px;background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(139,92,246,0.08));border:1.5px solid rgba(99,102,241,0.25);border-radius:12px;padding:16px 18px;">
+        <div style="font-size:13px;font-weight:700;color:var(--royal);margin-bottom:8px;">🛠️ Want to build your own project instead?</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0 0 8px 0;">If you already have an idea you're more excited about, build that. The workflow is identical — the dashboard is just the example. Keep it to a single-page app with no login or database for now (that's Project 3).</p>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin:0;">Once Claude Code is running in your project folder, just describe your idea instead of the dashboard and follow the same steps.</p>
+      </div>
     </div>
   </div>
 
@@ -1209,6 +1312,7 @@ git push</span></span>
       <span class="acc-chevron">▾</span>
     </div>
     <div class="accordion-body">
+      <p style="font-size:13px;color:var(--text-muted);margin-top:14px;line-height:1.8;">A full-stack web app called <strong>Dashboard Creator</strong> — a platform where users sign up, log in, and build their own personal dashboard by choosing from 13 widgets (clock, weather, to-do list, Pomodoro timer, and more). Every user gets their own private dashboard saved to a real database, so it's there waiting for them every time they log back in. This is the jump from a static web page to a real product that real people can use.</p>
       <div class="callout callout-info" style="margin-top:14px;">
         <strong>Pages you'll build:</strong><br>
         <strong>Landing page</strong> — explains what the app does and has a Sign Up button<br>

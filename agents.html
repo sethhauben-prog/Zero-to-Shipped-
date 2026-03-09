@@ -456,6 +456,13 @@ If you're unsure how to respond, say "I'll need to check on this" instead of gue
           <div class="step-content">
             <div class="step-title">Create a new Zap in Zapier</div>
             <div class="step-desc">In Zapier, click <strong>Create Zap</strong>. A Zap is a workflow — it has a trigger (what starts it) and one or more actions (what happens next).</div>
+            <div class="step-desc" style="margin-top:12px;">📋 <strong>Step-by-step:</strong>
+              <ol style="margin-top:8px; padding-left:20px; line-height:2.2;">
+                <li>Log in to <strong>zapier.com</strong> and click the orange <strong>+ Create</strong> button in the top left, then select <strong>New Zap</strong>.</li>
+                <li>You'll land in the Zap editor with two sections: a <strong>Trigger</strong> (the event that starts the Zap) and an <strong>Action</strong> (what happens as a result). You'll build these out in the steps below.</li>
+                <li>Give your Zap a name at the top of the page — something like <code>AI Email Responder</code> — so you can find it easily later.</li>
+              </ol>
+            </div>
           </div>
         </div>
         <div class="step">
@@ -504,6 +511,13 @@ Write only the reply text — no subject line, no greeting like "Dear", just the
           <div class="step-content">
             <div class="step-title">Add a second action — send the reply</div>
             <div class="step-desc">Add another Gmail action. Choose <strong>"Send Email"</strong>. Set <strong>To</strong> to the sender's email from the trigger. Set <strong>Subject</strong> to <code>Re: [original subject]</code>. Set <strong>Body</strong> to the output from Claude in the previous step.</div>
+            <div class="step-desc" style="margin-top:12px;">📋 <strong>How to map each field:</strong>
+              <ol style="margin-top:8px; padding-left:20px; line-height:2.2;">
+                <li><strong>To field:</strong> Click inside the <strong>To</strong> field — you'll see a <strong>+</strong> button appear on the right side of the field. Click it to open the variable picker. You'll see a list of your previous Zap steps — select the <strong>Gmail</strong> trigger step (labeled something like "1. New Email in Gmail"), then scroll down and choose <strong>From Email</strong>. Zapier will insert a token like <code>{{1. From Email}}</code> — this automatically pulls in the sender's email address each time the Zap runs, so the reply always goes to the right person.</li>
+                <li><strong>Subject field:</strong> Click inside the <strong>Subject</strong> field and manually type <code>Re: </code> (include a space after the colon). Then click the <strong>+</strong> button that appears on the right, select the <strong>Gmail</strong> trigger step, and choose <strong>Subject</strong>. The field will now show <code>Re: {{1. Subject}}</code> — this automatically fills in the original email's subject, so the reply reads like a proper email thread, e.g. <code>Re: AI Help</code>.</li>
+                <li><strong>Body field:</strong> Click inside the <strong>Body</strong> field, then click the <strong>+</strong> button that appears on the right. Select the <strong>Anthropic (Claude)</strong> step from the list, then click <strong>Response Content Text</strong>. Zapier will insert a token like <code>{{3. Response Content Text}}</code> — this gets replaced with Claude's actual reply each time the Zap runs.</li>
+              </ol>
+            </div>
           </div>
         </div>
         <div class="step">

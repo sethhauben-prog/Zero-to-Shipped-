@@ -92,8 +92,65 @@ body { background: var(--bg); color: var(--text); font-family: 'Manrope', sans-s
 .skill-tag { font-size: 12px; font-weight: 600; padding: 4px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
 .skill-tag::before { content: '✓'; color: var(--p-color, #4c1d95); font-size: 10px; }
 
-/* ACCORDION */
-.accordion { border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; background: var(--surface); overflow: hidden; }
+/* ─── STEP CHECKBOXES ─── */
+.step {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  transition: opacity 0.2s;
+}
+.step:last-child { border-bottom: none; }
+.step.done { opacity: 0.5; }
+.step.done .step-title { text-decoration: line-through; color: var(--text-dim); }
+.step-check {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  transition: all 0.15s;
+  background: var(--surface);
+}
+.step-check:hover { border-color: var(--p-color, #4c1d95); }
+.step.done .step-check {
+  background: var(--p-color, #4c1d95);
+  border-color: var(--p-color, #4c1d95);
+}
+.step-check-tick {
+  display: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+.step.done .step-check-tick { display: block; }
+
+/* ─── ACCORDION PROGRESS ─── */
+.acc-progress {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2px 9px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 4px;
+  transition: all 0.2s;
+}
+.acc-progress.all-done {
+  background: var(--p-color, #4c1d95);
+  border-color: var(--p-color, #4c1d95);
+  color: #fff;
+}
 .accordion-header { display: flex; align-items: center; gap: 14px; padding: 16px 20px; cursor: pointer; user-select: none; transition: background 0.15s; }
 .accordion-header:hover { background: var(--surface2); }
 .acc-icon { font-size: 16px; flex-shrink: 0; }
@@ -379,6 +436,7 @@ If you're unsure how to respond, say "I'll need to check on this" instead of gue
           <div class="step-content">
             <div class="step-title">Get your Anthropic API key</div>
             <div class="step-desc">In the Anthropic Console at <strong>console.anthropic.com</strong>, go to <strong>API Keys → Create Key</strong>. Copy it somewhere safe — you'll paste it into Zapier in the next step. Never share this key publicly.</div>
+            <div class="step-desc" style="margin-top:10px;">💡 <strong>What to name it:</strong> Pick a name that reminds you what this key is used for. Good options: <code>Zapier-Agent-Key</code>, <code>My-First-Agent</code>, or <code>Zapier-Key</code>.</div>
           </div>
         </div>
       </div>
@@ -404,7 +462,25 @@ If you're unsure how to respond, say "I'll need to check on this" instead of gue
           <div class="step-num">2</div>
           <div class="step-content">
             <div class="step-title">Set the trigger — New email in Gmail</div>
-            <div class="step-desc">Search for <strong>Gmail</strong> as your trigger app. Choose the event <strong>"New Email"</strong>. Connect your Gmail account. Under filters, set <strong>Subject Contains</strong> to <code>AI Help</code>. This means the Zap only fires when you receive an email with that subject line.</div>
+            <div class="step-desc">Search for <strong>Gmail</strong> as your trigger app. Choose the event <strong>"New Email"</strong>. Connect your Gmail account. Then add a Filter step to make sure the Zap only runs for emails with the subject <code>AI Help</code>.</div>
+            <div class="step-desc" style="margin-top:12px;">📋 <strong>Step-by-step:</strong>
+              <ol style="margin-top:8px; padding-left:20px; line-height:2.2;">
+                <li>In the Zap editor, search for <strong>Gmail</strong> and select it as your trigger app. For the event, choose <strong>"New Email"</strong>, then click <strong>Continue</strong>.</li>
+                <li>Click <strong>Sign in to Gmail</strong> and connect your account.</li>
+                <li>On the <strong>Configure</strong> tab, you'll see a <strong>"Label or mailbox"</strong> dropdown — click it and select <strong>INBOX</strong> from the list. This tells Zapier to watch your inbox for new emails. Click <strong>Continue</strong>.</li>
+                <li>Click <strong>Test trigger</strong>. Zapier will pull in a recent email from your inbox to confirm the connection works. If your inbox is empty, send yourself a quick test email first, then click <strong>Test trigger</strong> again.</li>
+                <li>Now you need to add a <strong>Filter</strong> so the Zap only runs for emails with the subject <code>AI Help</code>. Click the <strong>+</strong> icon below the Gmail trigger step and search for <strong>Filter</strong>, then select it. The Filter action is called <strong>"Only continue if…"</strong></li>
+                <li>You'll see three fields in a row. Set them up like this:
+                  <ul style="margin-top:6px; padding-left:20px; line-height:2;">
+                    <li><strong>Field 1 (dropdown):</strong> Click it and select <strong>Subject</strong> — this is the email subject line from the Gmail trigger.</li>
+                    <li><strong>Field 2 (dropdown):</strong> Select <strong>(Text) Contains</strong>.</li>
+                    <li><strong>Field 3 (text box):</strong> Type <code>AI Help</code>.</li>
+                  </ul>
+                </li>
+                <li>Click <strong>Continue</strong> then <strong>Test</strong>. Zapier will check whether your test email from step 4 passes the filter. If the subject was <code>AI Help</code> it will say <strong>"Zap would have continued"</strong> — you're good to go.</li>
+              </ol>
+
+            </div>
           </div>
         </div>
         <div class="step">
@@ -1347,6 +1423,66 @@ function makeCopyBtn(getText) {
   });
   return btn;
 }
+
+// ── STEP CHECKBOXES ──
+const PAGE_KEY = 'agents-progress';
+const savedProgress = JSON.parse(localStorage.getItem(PAGE_KEY) || '{}');
+
+function getStepId(stepEl) {
+  const accordion = stepEl.closest('.accordion');
+  const accTitle = accordion ? accordion.querySelector('.acc-title')?.textContent.trim() : 'unknown';
+  const stepNum = stepEl.querySelector('.step-num')?.textContent.trim() || '?';
+  const str = accTitle + '::' + stepNum;
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return 'step_' + Math.abs(hash);
+}
+
+function updateAccordionProgress(accordion) {
+  const steps = accordion.querySelectorAll('.step');
+  const done = accordion.querySelectorAll('.step.done').length;
+  const total = steps.length;
+  let badge = accordion.querySelector('.acc-progress');
+  if (!badge) return;
+  badge.textContent = done + '/' + total;
+  badge.classList.toggle('all-done', done === total);
+}
+
+document.querySelectorAll('.step').forEach(step => {
+  const check = document.createElement('div');
+  check.className = 'step-check';
+  check.innerHTML = '<span class="step-check-tick">✓</span>';
+  check.title = 'Mark complete';
+  step.appendChild(check);
+
+  const id = getStepId(step);
+  if (savedProgress[id]) step.classList.add('done');
+
+  check.addEventListener('click', e => {
+    e.stopPropagation();
+    step.classList.toggle('done');
+    savedProgress[id] = step.classList.contains('done');
+    localStorage.setItem(PAGE_KEY, JSON.stringify(savedProgress));
+    const accordion = step.closest('.accordion');
+    if (accordion) updateAccordionProgress(accordion);
+  });
+});
+
+document.querySelectorAll('.accordion').forEach(accordion => {
+  const steps = accordion.querySelectorAll('.step');
+  if (steps.length === 0) return;
+  const header = accordion.querySelector('.accordion-header');
+  const chevron = header?.querySelector('.acc-chevron');
+  if (!header || !chevron) return;
+  const badge = document.createElement('span');
+  badge.className = 'acc-progress';
+  badge.textContent = '0/' + steps.length;
+  header.insertBefore(badge, chevron);
+  updateAccordionProgress(accordion);
+});
 
 document.querySelectorAll('span.code-block').forEach(block => {
   const parent = block.parentElement;

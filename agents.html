@@ -506,7 +506,9 @@ If you're unsure how to respond, say "I'll need to check on this" instead of gue
             <div class="step-desc" style="margin-top:12px;">📋 <strong>Setting up the User Message field:</strong>
               <ol style="margin-top:8px; padding-left:20px; line-height:2.4;">
                 <li>Click inside the <strong>User Message</strong> field and type the following text exactly as shown:
-                  <code style="display:block; margin-top:8px; margin-bottom:8px; padding:12px; background:#f4f4f4; border-radius:4px; line-height:2;">You are a helpful assistant. Someone emailed asking for help. Read their email and write a friendly, helpful reply in 2-3 sentences.</code>
+                  <div class="copyable-wrap" style="margin-top:8px; margin-bottom:8px;">
+                    <span class="code-block"><span class="code-str">You are a helpful assistant. Someone emailed asking for help. Read their email and write a friendly, helpful reply in 2-3 sentences.</span></span>
+                  </div>
                 </li>
                 <li>Press <strong>Enter</strong> twice to add a blank line, then type <code>Email subject:</code> followed by a space. Now click the <strong>+</strong> button on the right side of the field to open the variable picker. You will see a panel appear. Under <strong>Previous Steps</strong> click <strong>1. New Email</strong> to expand it. Find and click <strong>Subject</strong>. You will see a blue token <code>{{1. Subject}}</code> appear in the field.</li>
                 <li>Press <strong>Enter</strong> once, then type <code>Email body:</code> followed by a space. Click the <strong>+</strong> button again. Under <strong>Previous Steps</strong> click <strong>1. New Email</strong>. In the search box type <code>body</code>. You will see several options — click <strong>Body Plain</strong> (NOT Body Html). A blue token <code>{{1. Body Plain}}</code> will appear.
@@ -516,7 +518,14 @@ If you're unsure how to respond, say "I'll need to check on this" instead of gue
                 </li>
                 <li>Press <strong>Enter</strong> twice, then type: <code>Write only the reply text — no subject line, no greeting like "Dear", just the reply body.</code></li>
                 <li>When finished your <strong>User Message</strong> field should look exactly like this:
-                  <code style="display:block; margin-top:8px; padding:12px; background:#f4f4f4; border-radius:4px; line-height:2;">You are a helpful assistant. Someone emailed asking for help. Read their email and write a friendly, helpful reply in 2-3 sentences.<br><br>Email subject: {{1. Subject}}<br>Email body: {{1. Body Plain}}<br><br>Write only the reply text — no subject line, no greeting like "Dear", just the reply body.</code>
+                  <div class="copyable-wrap" style="margin-top:8px;">
+                    <span class="code-block"><span class="code-str">You are a helpful assistant. Someone emailed asking for help. Read their email and write a friendly, helpful reply in 2-3 sentences.
+
+Email subject: {{1. Subject}}
+Email body: {{1. Body Plain}}
+
+Write only the reply text — no subject line, no greeting like "Dear", just the reply body.</span></span>
+                  </div>
                 </li>
                 <li>Leave all other fields as default. Click <strong>Continue</strong> then click <strong>Test</strong>. Zapier will send your test email to Claude and you will see Claude's reply appear in the test results. Confirm the reply looks like a real, sensible response to your test question before moving on.</li>
               </ol>

@@ -829,7 +829,24 @@ Use the Anthropic Python SDK. Store the API key in a .env file. Add clear commen
           <div class="step-num">2</div>
           <div class="step-content">
             <div class="step-title">Set up email sending</div>
-            <div class="step-desc">The simplest option is Gmail with an App Password. In your Google account, go to <strong>Security → 2-Step Verification → App Passwords</strong>. Create an app password for "Mail". This lets Python send email on your behalf without your real password.</div>
+            <div class="step-desc">The simplest option is Gmail with an App Password. This is a special one-time password that lets Python send email on your behalf without using your real Gmail password.</div>
+            <div class="step-desc" style="margin-top:12px;">📋 <strong>Step-by-step:</strong>
+              <ol style="margin-top:8px; padding-left:20px; line-height:2.4;">
+                <li>Go directly to <strong><a href="https://myaccount.google.com/apppasswords" target="_blank">myaccount.google.com/apppasswords</a></strong> in your browser. You may be asked to verify your identity.</li>
+                <li>In the <strong>App name</strong> field, type <code>Research Agent</code> and click <strong>Create</strong>.</li>
+                <li>Google will display a <strong>16-character password</strong>. Copy it immediately — you will never see it again after closing this screen.</li>
+                <li>Open your project's <code>.env</code> file and add these two lines:
+                  <div class="copyable-wrap" style="margin-top:8px;">
+                    <span class="code-block"><span class="code-str">GMAIL_ADDRESS=your@gmail.com
+GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx</span></span>
+                  </div>
+                  Replace <code>your@gmail.com</code> with your Gmail address and <code>xxxx xxxx xxxx xxxx</code> with the 16-character password you just copied.
+                </li>
+              </ol>
+              <div style="margin-top:8px; padding: 10px 14px; background:#fff8e1; border-left: 4px solid #f5a623; border-radius:4px;">
+                ⚠️ <strong>Note:</strong> If you don't see the App Passwords page and are asked to enable 2-Step Verification first, go to <strong><a href="https://myaccount.google.com/signinoptions/two-step-verification" target="_blank">myaccount.google.com/signinoptions/two-step-verification</a></strong>, turn it on, then return to the App Passwords URL above.
+              </div>
+            </div>
           </div>
         </div>
       </div>
